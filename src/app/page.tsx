@@ -1,5 +1,7 @@
 import Image from 'next/image'
 
+import {ModeToggle} from "@/components/darkmode-toggle"
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -107,6 +109,7 @@ export default function Home() {
             Instantly deploy your Next.js site to a shareable URL with Vercel.
           </p>
         </a>
+        <ModeToggle />
       </div>
     </main>
   )
