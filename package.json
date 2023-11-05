@@ -32,6 +32,7 @@
     "eslint-config-next": "14.0.1",
     "postcss": "^8",
     "semantic-release": "^22.0.7",
+    "semantic-release-export-data": "^1.0.1",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
