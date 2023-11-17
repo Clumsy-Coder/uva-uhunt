@@ -30,7 +30,7 @@
     "autoprefixer": "^10.0.1",
     "conventional-changelog": "^5.1.0",
     "eslint": "^8",
-    "eslint-config-next": "14.0.2",
+    "eslint-config-next": "14.0.3",
     "postcss": "^8",
     "semantic-release": "^22.0.8",
     "semantic-release-export-data": "^1.0.1",
