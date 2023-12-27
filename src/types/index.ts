@@ -87,6 +87,6 @@ export type Problem = {
   /**
    * Problem Status (0 = unavailable, 1 = normal, 2 = special judge)
    */
-  status: number;
+  status: string;
   rej: number;
 };
