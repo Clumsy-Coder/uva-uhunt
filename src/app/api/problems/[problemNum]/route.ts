@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { uhuntProblemNumUrl } from "@/utils/constants";
+import { Problem, ProblemStatus } from "@/types";
 
 type getParamsType = {
   params: {
@@ -32,7 +33,8 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
   const url = uhuntProblemNumUrl(problemNum);
 
   const response = await fetch(url);
-  const data = await response.json();
+  const data: Problem = await response.json();
+  data.status = ProblemStatus[data.status as unknown as number]
 
   return Response.json(data);
 };
