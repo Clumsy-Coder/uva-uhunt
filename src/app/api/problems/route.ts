@@ -7,27 +7,27 @@ import { Problem, ProblemStatus } from "@/types";
  * check `https://uhunt.onlinejudge.org/api/p` to view raw data. (each problem stats are presented as an array element)
  */
 const arrKey = [
-  "pid",
-  "num",
-  "title",
-  "dacu",
-  "mrun",
-  "mmem",
-  "nover",
-  "sube",
-  "noj",
-  "inq",
-  "ce",
-  "rf",
-  "re",
-  "ole",
-  "tle",
-  "mle",
-  "wa",
-  "pe",
-  "ac",
-  "rtl",
-  "status",
+  "pid",    // problem ID
+  "num",    // problem number
+  "title",  // problem title
+  "dacu",   // Number of Distinct Accepted User (DACU)
+  "mrun",   // Best Runtime of an Accepted Submission
+  "mmem",   // Best Memory used of an Accepted Submission
+  "nover",  // Number of No Verdict Given (can be ignored)
+  "sube",   // Number of Submission Error
+  "noj",    // Number of Can't be Judged
+  "inq",    // Number of In Queue
+  "ce",     // Number of Compilation Error
+  "rf",     // Number of Restricted Function
+  "re",     // Number of Runtime Error
+  "ole",    // Number of Output Limit Exceeded
+  "tle",    // Number of Time Limit Exceeded
+  "mle",    // Number of Memory Limit Exceeded
+  "wa",     // Number of Wrong Answer
+  "pe",     // Number of Presentation Error
+  "ac",     // Number of Accepted
+  "rtl",    // Problem Run-Time Limit (milliseconds)
+  "status", // Problem Status (0 = unavailable, 1 = normal, 2 = special judge)
   "rej",
 ];
 
