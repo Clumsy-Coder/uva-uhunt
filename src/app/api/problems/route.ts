@@ -1,4 +1,5 @@
 import { uhuntAllProblemsUrl } from "@/utils/constants";
+import { Problem, ProblemStatus } from "@/types";
 
 /**
  * an array of keys that will be used to convert an array of arrays into array of objects
@@ -47,7 +48,7 @@ export const GET = async (_request: Request) => {
   const data = await response.json();
 
   // convert an array of array into array of problems
-  // ex: 
+  // ex:
   // convert
   // [
   //   [1,2,3,...],
@@ -59,15 +60,20 @@ export const GET = async (_request: Request) => {
   //   {pid: 1, num: 2, title: 3, ...},
   //   {pid: 1, num: 2, title: 3, ...},
   // ]
-  const converted = data.map((problem: number[]) => {
-    const initialValue = {};
-    return problem.reduce((obj, item, index: number) => {
-      return {
-        ...obj,
-        [arrKey[index]]: item,
-      };
-    }, initialValue);
-  });
+  const converted = data
+    .map((problem: number[]) => {
+      const initialValue = {};
+      return problem.reduce((obj, item, index: number) => {
+        return {
+          ...obj,
+          [arrKey[index]]: item,
+        };
+      }, initialValue);
+    })
+    .map((problem: Problem) => {
+      problem.status = ProblemStatus[problem.status];
+      return problem;
+    });
 
   return Response.json(converted);
 };
