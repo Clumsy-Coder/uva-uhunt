@@ -1,3 +1,9 @@
+export const ProblemStatus = {
+  0 : "Unavailable",
+  1 : "Normal",
+  2 : "Special judge"
+}
+
 /**
  * Data structure returned when querying from url `https://uhunt.onlinejudge.org/api/p/num/:num`
  *
