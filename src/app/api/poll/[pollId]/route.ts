@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import axios from "axios";
 
 import { Language, Problem, Submission, Verdict } from "@/types";
 import { fetchLiveSubmissionsUrl, uhuntProblemIdUrl } from "@/utils/constants";
@@ -32,8 +33,8 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
 
   const url = fetchLiveSubmissionsUrl(+pollId);
 
-  const fetchResponse = await fetch(url);
-  const data: Submission[] = await fetchResponse.json();
+  const fetchResponse = await axios.get<Submission[]>(url)
+  const data = fetchResponse.data
 
   const converted = data
     .map(async (submission: Submission) => {
