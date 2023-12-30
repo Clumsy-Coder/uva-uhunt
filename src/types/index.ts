@@ -111,3 +111,12 @@ export const Verdict = {
   80 : "Presentation error",
   90 : "Accepted",
 }
+
+export const Language = {
+  1 : "ANSI C",
+  2 : "Java",
+  3 : "C++",
+  4 : "Pascal",
+  5 : "C++11",
+}
+
