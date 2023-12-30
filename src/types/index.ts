@@ -120,3 +120,73 @@ export const Language = {
   5 : "C++11",
 }
 
+/**
+ * Submission data structure
+ *
+ * Example `https://uhunt.onlinejudge.org/api/poll/0`
+ */
+export type Submission = {
+  /**
+   * Poll ID
+   */
+  id: number;
+  type: string;
+  msg: {
+    /**
+     * Submission ID
+     */
+    sid: number;
+    /**
+     * User ID
+     */
+    uid: number;
+    /**
+     * Problem ID
+     */
+    pid: number;
+    /**
+     * Problem number
+     */
+    pnum: number;
+    /**
+     * Problem title
+     */
+    pTitle: string;
+    /**
+     * Verdict ID
+     */
+    ver: number;
+    /**
+     * Verdict string. Ex: `Accepted`, or `Compile error`
+     */
+    verdictStr: string;
+    /**
+     * Language ID
+     */
+    lan: string;
+    /**
+     * Runtime in seconds
+     */
+    run: number;
+    /**
+     * Memory used for the submission
+     */
+    mem: number;
+    /**
+     * Submission rank of the problem
+     */
+    rank: number | string;
+    /**
+     * Submission time in Unix timestamp
+     */
+    sbt: number;
+    /**
+     * User's name for the submission
+     */
+    name: string;
+    /**
+     * the username of the user
+     */
+    uname: string;
+  };
+};
