@@ -96,3 +96,18 @@ export type Problem = {
   status: string;
   rej: number;
 };
+
+export const Verdict = {
+  10 : "Submission error",
+  15 : "Can't be judged",
+  20 : "In queue",
+  30 : "Compile error",
+  35 : "Restricted function",
+  40 : "Runtime error",
+  45 : "Output limit",
+  50 : "Time limit",
+  60 : "Memory limit",
+  70 : "Wrong answer",
+  80 : "Presentation error",
+  90 : "Accepted",
+}
