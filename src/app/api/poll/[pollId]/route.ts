@@ -37,7 +37,7 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
 
   const converted = data
     .map(async (submission: Submission) => {
-      submission.msg.ver = Verdict[submission.msg.ver];
+      submission.msg.verdictStr = Verdict[submission.msg.ver] || "- In Queue -";
       submission.msg.lan = Language[submission.msg.lan];
 
       // add problem number to the object
