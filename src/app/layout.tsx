@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
+import ReactQueryProvider from "@/provider/ReactQuery";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -30,15 +31,17 @@ export default function RootLayout({
           inter.variable,
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          <main className="p-6">{children}</main>
-        </ThemeProvider>
+        <ReactQueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            <main className="p-6">{children}</main>
+          </ThemeProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
