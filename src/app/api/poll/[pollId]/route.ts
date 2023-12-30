@@ -57,7 +57,37 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
   // using Promise.all because the map function is using an async function
   // use Promise.all to resolver async operations
   // obtained from: https://stackoverflow.com/a/68279968/3053548
-  const response = await Promise.all(converted);
+  await Promise.all(converted);
 
-  return Response.json(response);
+  // the latest submission is the last element. so reversing it will give the latest submission first
+  let processedSubmission = data.reverse();
+  // group by submission id
+  // there are multiple elements with the same submission ID.
+  // The first one is usually indicating `in queue`.
+  // the second one is a verdict of the submission
+  processedSubmission = Array.from<Submission>(
+    data
+      .reduce(
+        (entryMap, submission) =>
+          entryMap.set(submission.msg.sid, [
+            ...(entryMap.get(submission.msg.sid) || []),
+            submission,
+          ]),
+        new Map(),
+      )
+      .values(),
+  );
+  // take the latest submission from grouped array elements
+  // the grouped submissions will have one element with the verdict of `in queue` and the other final verdict
+  processedSubmission = processedSubmission.reduce(
+    (result: Submission[], value, key) => [
+      ...result,
+      { ...value[0], msg: value[0].msg },
+    ],
+    [],
+  );
+  //sort submission by submission time in descending order
+  processedSubmission.sort((a, b) => b.msg.sbt - a.msg.sbt);
+
+  return Response.json(processedSubmission);
 };
