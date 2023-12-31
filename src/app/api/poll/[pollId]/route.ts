@@ -38,8 +38,12 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
 
   const converted = data
     .map(async (submission: Submission) => {
-      submission.msg.verdictStr = Verdict[submission.msg.ver] || "- In Queue -";
-      submission.msg.lan = Language[submission.msg.lan];
+      submission.msg.verdict = Verdict[submission.msg.ver] || {
+        fgColor: "",
+        bgColor: "",
+        title: "- In Queue -",
+      };
+      submission.msg.lan = Language[submission.msg.lan] || "--";
 
       // add problem number to the object
       const pidUrl = uhuntProblemIdUrl(`${submission.msg.pid}`);
@@ -78,6 +82,7 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
       )
       .values(),
   );
+
   // take the latest submission from grouped array elements
   // the grouped submissions will have one element with the verdict of `in queue` and the other final verdict
   processedSubmission = processedSubmission.reduce(
