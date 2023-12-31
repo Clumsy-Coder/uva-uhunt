@@ -98,8 +98,17 @@ export type Problem = {
 };
 
 export type VerdictType = {
+  /**
+   * Tailwindcss styles for foreground
+   */
   fgColor: string;
+  /**
+   * Tailwindcss styles for background
+   */
   bgColor: string;
+  /**
+   * Title to be displayed on the front end
+   */
   title: string;
 };
 
