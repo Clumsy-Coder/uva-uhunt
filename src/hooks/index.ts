@@ -12,6 +12,9 @@ export enum queryKey {
 
 /**
  * Fetch live submission (polling)
+ *
+ * @param pollId - pollId to retrieve the live submission
+ * @param fetchInterval - time in milliseconds to refetch from the server
  */
 export const useFetchLiveSubmission = (pollId = 0, fetchInterval = 5000) => {
   return useQuery({
