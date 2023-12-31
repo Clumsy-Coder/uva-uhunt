@@ -97,20 +97,27 @@ export type Problem = {
   rej: number;
 };
 
-export const Verdict = {
-  10 : "Submission error",
-  15 : "Can't be judged",
-  20 : "In queue",
-  30 : "Compile error",
-  35 : "Restricted function",
-  40 : "Runtime error",
-  45 : "Output limit",
-  50 : "Time limit",
-  60 : "Memory limit",
-  70 : "Wrong answer",
-  80 : "Presentation error",
-  90 : "Accepted",
-}
+export type VerdictType = {
+  fgColor: string;
+  bgColor: string;
+  title: string;
+};
+
+export const Verdict: Record<string, VerdictType> = {
+  0 : { fgColor: "", bgColor: "bg-gray-500",    title: "- In Queue -"         },
+  10: { fgColor: "", bgColor: "bg-gray-500",    title: "Submission error"     },
+  15: { fgColor: "", bgColor: "bg-gray-500",    title: "Can't be judged"      },
+  20: { fgColor: "", bgColor: "bg-gray-500",    title: "- In Queue -"         },
+  30: { fgColor: "", bgColor: "bg-orange-600",  title: "Compile error"        },
+  35: { fgColor: "", bgColor: "bg-gray-500",    title: "Restricted function"  },
+  40: { fgColor: "", bgColor: "bg-[#00AAAA]",   title: "Runtime error"        },
+  45: { fgColor: "", bgColor: "bg-[#000066]",   title: "Output limit"         },
+  50: { fgColor: "", bgColor: "bg-[#0000FF]",   title: "Time limit"           },
+  60: { fgColor: "", bgColor: "bg-[#0000AA]",   title: "Memory limit"         },
+  70: { fgColor: "", bgColor: "bg-[#FF0000]",   title: "Wrong answer"         },
+  80: { fgColor: "", bgColor: "bg-[#666600]",   title: "Presentation error"   },
+  90: { fgColor: "", bgColor: "bg-[#00AA00]",   title: "Accepted"             },
+};
 
 export const Language = {
   1: "ANSI C",
@@ -157,9 +164,18 @@ export type Submission = {
      */
     ver: number;
     /**
-     * Verdict string. Ex: `Accepted`, or `Compile error`
+     * Verdict properties
+     *
+     * contains 
+     * - verdict title Ex: `Accepted`, or `Compile error`
+     * - fgColor: tailwindcss class to use for foreground color
+     * - bgColor: tailwindcss class to use for background color
      */
-    verdictStr: string;
+    verdict: {
+      title: string;
+      fgColor: string;
+      bgColor: string;
+    };
     /**
      * Language ID
      */
