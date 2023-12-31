@@ -18,15 +18,17 @@ const LiveSubmissionTable = ({ data }: LiveSubmissionTableProps) => {
   return (
     <Table >
       <TableHeader className="sticky top-0 z-80">
-        <TableHead>Submission ID</TableHead>
-        <TableHead>Problem number</TableHead>
-        <TableHead>Problem title</TableHead>
-        <TableHead>User (username)</TableHead>
-        <TableHead className="text-center">Verdict</TableHead>
-        <TableHead>Language</TableHead>
-        <TableHead>Time</TableHead>
-        <TableHead>Rank</TableHead>
-        <TableHead className="text-right">Submit time</TableHead>
+        <TableRow className="items-center whitespace-nowrap">
+          <TableHead>Submission ID</TableHead>
+          <TableHead>Problem number</TableHead>
+          <TableHead>Problem title</TableHead>
+          <TableHead>User (username)</TableHead>
+          <TableHead className="text-center">Verdict</TableHead>
+          <TableHead>Language</TableHead>
+          <TableHead>Time</TableHead>
+          <TableHead>Rank</TableHead>
+          <TableHead className="text-right">Submit time</TableHead>
+        </TableRow>
       </TableHeader>
       <TableBody>
         {data.map(({ msg }) => {
