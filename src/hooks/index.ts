@@ -25,5 +25,6 @@ export const useFetchLiveSubmission = (pollId = 0, fetchInterval = 5000) => {
       return data;
     },
     refetchInterval: fetchInterval,
+    staleTime: fetchInterval
   });
 };
