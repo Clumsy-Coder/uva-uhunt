@@ -1,8 +1,8 @@
 export const ProblemStatus = {
-  0 : "Unavailable",
-  1 : "Normal",
-  2 : "Special judge"
-}
+  0: "Unavailable",
+  1: "Normal",
+  2: "Special judge",
+};
 
 /**
  * Data structure returned when querying from url `https://uhunt.onlinejudge.org/api/p/num/:num`
@@ -113,12 +113,12 @@ export const Verdict = {
 }
 
 export const Language = {
-  1 : "ANSI C",
-  2 : "Java",
-  3 : "C++",
-  4 : "Pascal",
-  5 : "C++11",
-}
+  1: "ANSI C",
+  2: "Java",
+  3: "C++",
+  4: "Pascal",
+  5: "C++11",
+};
 
 /**
  * Submission data structure
