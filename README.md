@@ -41,6 +41,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 <summary>Show screenshots</summary>
 
 ### Home page (live submissions)
-![Home page 1](docs/images/page-home.png)
+![Home page 1](docs/images/page-home-loading.png)
+
+![Home page 2](docs/images/page-home.png)
 
 </details>
