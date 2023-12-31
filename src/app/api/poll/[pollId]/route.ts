@@ -70,7 +70,7 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
   // there are multiple elements with the same submission ID.
   // The first one is usually indicating `in queue`.
   // the second one is a verdict of the submission
-  processedSubmission = Array.from<Submission>(
+  const groupBySubmission = Array.from<Submission[]>(
     data
       .reduce(
         (entryMap, submission) =>
@@ -85,7 +85,7 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
 
   // take the latest submission from grouped array elements
   // the grouped submissions will have one element with the verdict of `in queue` and the other final verdict
-  processedSubmission = processedSubmission.reduce(
+  const flattenedSubmission = groupBySubmission.reduce(
     (result: Submission[], value, key) => [
       ...result,
       { ...value[0], msg: value[0].msg },
@@ -93,7 +93,7 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
     [],
   );
   //sort submission by submission time in descending order
-  processedSubmission.sort((a, b) => b.msg.sbt - a.msg.sbt);
+  flattenedSubmission.sort((a, b) => b.msg.sbt - a.msg.sbt);
 
-  return Response.json(processedSubmission);
+  return Response.json(flattenedSubmission);
 };
