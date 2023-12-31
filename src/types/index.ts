@@ -1,4 +1,4 @@
-export const ProblemStatus = {
+export const ProblemStatus: Record<string, string> = {
   0: "Unavailable",
   1: "Normal",
   2: "Special judge",
@@ -119,7 +119,7 @@ export const Verdict: Record<string, VerdictType> = {
   90: { fgColor: "", bgColor: "bg-[#00AA00]",   title: "Accepted"             },
 };
 
-export const Language = {
+export const Language: Record<string, string> = {
   1: "ANSI C",
   2: "Java",
   3: "C++",
