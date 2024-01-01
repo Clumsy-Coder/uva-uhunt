@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { Cross2Icon } from "@radix-ui/react-icons"
 import {
   ColumnDef,
   SortingState,
@@ -64,12 +65,24 @@ export function DataTable<TData, TValue>({
   return (
     <div>
       <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter any column"
-          value={globalFilter}
-          onChange={(event) => setGlobalFilter(event.target.value) }
-          className="max-w-sm"
-        />
+        <div className="flex items-center gap-4">
+          <Input
+            placeholder="Filter any column"
+            value={globalFilter}
+            onChange={(event) => setGlobalFilter(event.target.value)}
+            className="max-w-sm"
+          />
+          {globalFilter.length > 0 && (
+          <Button
+            variant="outline"
+            onClick={() => setGlobalFilter('')}
+            className="h-10 px-2 lg:px-3"
+          >
+            Reset
+            <Cross2Icon className="ml-2 h-4 w-4" />
+          </Button>
+        )}
+        </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
