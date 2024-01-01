@@ -5,15 +5,10 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button"
+import { Problem } from "@/types";
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
-  num: string
-  title: string
-}
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Problem>[] = [
   {
     accessorKey: "num",
     header: ({ column }) => {
