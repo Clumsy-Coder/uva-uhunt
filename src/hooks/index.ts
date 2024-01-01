@@ -8,6 +8,10 @@ import { Submission } from "@/types";
  */
 export enum queryKey {
   polling = "live-polling",
+  /**
+   * Reacy query key for fetching all problems
+   */
+  allProblems = "all-problems",
 }
 
 /**
@@ -28,3 +32,15 @@ export const useFetchLiveSubmission = (pollId = 0, fetchInterval = 5000) => {
     staleTime: fetchInterval
   });
 };
+
+/**
+ * Fetch all problems
+ */
+export const useFetchProblems = () => {
+  return useQuery({
+    queryKey: [queryKey.allProblems],
+    queryFn: async () => axios.get("/api/problems").then((res) => res.data),
+    refetchOnWindowFocus: false
+  });
+};
+
