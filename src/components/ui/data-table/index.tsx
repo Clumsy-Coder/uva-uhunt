@@ -110,7 +110,18 @@ export function DataTable<TData, TValue>({
                       column.toggleVisibility(!!value)
                     }
                   >
-                    {column.id}
+                    {
+                      /*
+                       * to use column.columnDef.meta.headerTitle , it needs to be set in the `columns.tsx`
+                       * export const columns: ColumnDef<Problem>[] = [
+                       *  meta: {
+                       *    headerTitle: "Problem number"
+                       *  },
+                       *  ... // other config
+                       * ]
+                       */
+                      (column.columnDef.meta as { headerTitle: string })?.headerTitle || column.id
+                    }
                   </DropdownMenuCheckboxItem>
                 )
               })}
@@ -165,4 +176,3 @@ export function DataTable<TData, TValue>({
     </div>
   )
 }
-

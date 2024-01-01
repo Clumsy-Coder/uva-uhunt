@@ -10,6 +10,9 @@ import { Problem } from "@/types";
 export const columns: ColumnDef<Problem>[] = [
   {
     accessorKey: "num",
+    meta: {
+      headerTitle: "Problem number"
+    },
     header: ({ column }) => {
       return (
         <Button
@@ -33,6 +36,9 @@ export const columns: ColumnDef<Problem>[] = [
   },
   {
     accessorKey: "title",
+    meta: {
+      headerTitle: "Problem title"
+    },
     header: ({ column }) => {
       return (
         <Button
