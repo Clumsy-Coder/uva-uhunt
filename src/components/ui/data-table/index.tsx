@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Cross2Icon } from "@radix-ui/react-icons"
+import { Cross2Icon, MixerHorizontalIcon } from "@radix-ui/react-icons"
 import {
   ColumnDef,
   SortingState,
@@ -20,6 +20,8 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -86,10 +88,13 @@ export function DataTable<TData, TValue>({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
+              <MixerHorizontalIcon className="mr-2 h-4 w-4" />
               Columns
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+            <DropdownMenuSeparator />
             {table
               .getAllColumns()
               .filter(
