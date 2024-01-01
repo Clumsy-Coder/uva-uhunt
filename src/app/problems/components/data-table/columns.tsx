@@ -2,6 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button"
 
@@ -24,6 +25,18 @@ export const columns: ColumnDef<Payment>[] = [
           Problem number
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <div className="hover:underline">
+          <Link
+            href={`/problems/${row.getValue("num")}`}
+            className="p-3"
+          >
+            {row.getValue("num")}
+          </Link>
+        </div>
       )
     },
   },
@@ -38,6 +51,18 @@ export const columns: ColumnDef<Payment>[] = [
           Problem Title
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <div className="hover:underline">
+          <Link
+            href={`/problems/${row.getValue("num")}`}
+            className="p-3"
+          >
+            {row.getValue("title")}
+          </Link>
+        </div>
       )
     },
   },
