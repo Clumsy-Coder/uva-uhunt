@@ -45,4 +45,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ![Home page 2](docs/images/page-home.png)
 
+### Problems page (`/problems`)
+![Problems page 1](docs/images/page-problems-loading.png)
+
+![Problems page 2](docs/images/page-problems.png)
+
+
 </details>
