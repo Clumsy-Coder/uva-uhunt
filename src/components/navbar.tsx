@@ -3,7 +3,10 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/darkmode-toggle";
 
-const links = [{ label: "Uva uHunt", href: "/" }];
+const links = [
+  { label: "Uva uHunt", href: "/" },
+  { label: "All problems", href: "/problems" },
+];
 
 const Navbar = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
   return (
