@@ -15,8 +15,6 @@ const ProblemsPage = () => {
     return <div>Error fetching data</div>;
   }
 
-  console.log(data)
-
   return (
   <section>
     <h1 className="text-3xl">All Problems</h1>
