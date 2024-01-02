@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/darkmode-toggle";
@@ -9,6 +12,8 @@ const links = [
 ];
 
 const Navbar = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
+  const pathname = usePathname();
+
   return (
     <header className="flex flex-col justify-between md:flex border-b w-full sticky top-0 z-50 bg-background">
       <nav
@@ -18,15 +23,20 @@ const Navbar = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
         )}
         {...props}
       >
-        {links.map((link) => (
-          <Link
-            key={link.label}
-            href={link.href}
-            className="text-lg font-medium rounded-lg px-2 py-2 hover:bg-zinc-800 hover:underline"
-          >
-            {link.label}
-          </Link>
-        ))}
+        <div className="flex items-center gap-2">
+          {links.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className={cn(
+                "nav-link",
+                pathname === link.href && "active-nav-link",
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
         <ModeToggle />
       </nav>
     </header>
