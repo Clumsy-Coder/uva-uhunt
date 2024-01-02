@@ -5,6 +5,7 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 
 import { Button, buttonVariants } from "@/components/ui/button";
+import { DataTableColumnHeader } from "@/components/ui/data-table/column-header";
 import { Problem } from "@/types";
 
 export const columns: ColumnDef<Problem>[] = [
@@ -15,13 +16,7 @@ export const columns: ColumnDef<Problem>[] = [
     },
     header: ({ column }) => {
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Problem number
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <DataTableColumnHeader column={column} title="Problem Number" />
       );
     },
     cell: ({ row }) => {
@@ -39,13 +34,7 @@ export const columns: ColumnDef<Problem>[] = [
     },
     header: ({ column }) => {
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Problem Title
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <DataTableColumnHeader column={column} title="Problem Title" />
       );
     },
     cell: ({ row }) => {
