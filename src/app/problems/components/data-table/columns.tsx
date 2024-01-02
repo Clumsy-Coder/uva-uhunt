@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Problem } from "@/types";
 
 export const columns: ColumnDef<Problem>[] = [
@@ -26,11 +26,9 @@ export const columns: ColumnDef<Problem>[] = [
     },
     cell: ({ row }) => {
       return (
-        <div className="hover:underline">
-          <Link href={`/problems/${row.getValue("num")}`} className="p-3">
-            {row.getValue("num")}
-          </Link>
-        </div>
+        <Link href={`/problems/${row.getValue("num")}`} className={buttonVariants({variant: 'outline'})}>
+          {row.getValue("num")}
+        </Link>
       );
     },
   },
@@ -52,11 +50,9 @@ export const columns: ColumnDef<Problem>[] = [
     },
     cell: ({ row }) => {
       return (
-        <div className="hover:underline">
-          <Link href={`/problems/${row.getValue("num")}`} className="p-3">
-            {row.getValue("title")}
-          </Link>
-        </div>
+        <Link href={`/problems/${row.getValue("num")}`} className={buttonVariants({variant: 'outline'})}>
+          {row.getValue("title")}
+        </Link>
       );
     },
   },
