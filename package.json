@@ -1,6 +1,6 @@
 {
   "name": "uva-uhunt",
-  "version": "1.0.0-development.2",
+  "version": "1.0.0-development.3",
   "private": true,
   "scripts": {
     "dev": "next dev",
