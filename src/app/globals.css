@@ -74,3 +74,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.nav-link {
+  @apply rounded-lg p-2 hover:underline hover:dark:bg-zinc-800 hover:bg-zinc-200
+}
+
+.active-nav-link {
+  @apply rounded-lg p-2 underline dark:bg-zinc-800 bg-zinc-200 text-primary
+}
