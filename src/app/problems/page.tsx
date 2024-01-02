@@ -1,6 +1,7 @@
 "use client";
 
 import { DataTable } from "@/components/ui/data-table";
+import DataTableLoading from "@/components/ui/data-table/loading";
 import { columns } from "@/app/problems/components/data-table/columns";
 import { useFetchProblems } from "@/hooks";
 
@@ -8,7 +9,12 @@ const ProblemsPage = () => {
   const { data, isLoading, isError } = useFetchProblems();
 
   if (isLoading) {
-    return <div>Fetching data </div>;
+    return (
+      <section>
+        <h1 className="text-3xl">All Problems</h1>
+        <DataTableLoading numColumns={2} numRows={8} />
+      </section>
+    );
   }
 
   if (isError) {
@@ -16,11 +22,11 @@ const ProblemsPage = () => {
   }
 
   return (
-  <section>
-    <h1 className="text-3xl">All Problems</h1>
-    <DataTable columns={columns} data={data} />
-  </section>
-  )
+    <section>
+      <h1 className="text-3xl">All Problems</h1>
+      <DataTable columns={columns} data={data} />
+    </section>
+  );
 };
 
 export default ProblemsPage;
