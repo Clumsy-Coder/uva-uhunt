@@ -19,6 +19,7 @@ const ProblemsPage = () => {
 
   return (
   <section>
+    <h1 className="text-3xl">All Problems</h1>
     <DataTable columns={columns} data={data} />
   </section>
   )
