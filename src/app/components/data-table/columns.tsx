@@ -92,5 +92,21 @@ export const columns: ColumnDef<Submission>[] = [
       );
     },
   },
+  {
+    accessorKey: "language",
+    accessorFn: row => row.msg.lan,
+    header: ({ column }) => {
+      return (
+        <DataTableColumnHeader column={column} title="Language" />
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <p>
+          {row.getValue("language")}
+        </p>
+      );
+    },
+  },
 ]
 
