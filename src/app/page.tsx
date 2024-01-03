@@ -18,8 +18,12 @@ export default function Home() {
   const { data, isLoading, isError, isSuccess } = useFetchLiveSubmission(pollIdRef.current);
 
   if (isLoading || !data) {
-    return <DataTableLoading numColumns={9} numRows={9} />
-;
+    return (
+      <section>
+        <h1 className="text-3xl">Live Submissions</h1>
+        <DataTableLoading numColumns={9} numRows={8} />
+      </section>
+    );
   }
 
   if (isError) {
@@ -31,8 +35,9 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <section>
+      <h1 className="text-3xl">Live Submissions</h1>
       <DataTable data={data} columns={columns} />
-    </div>
+    </section>
   );
 }
