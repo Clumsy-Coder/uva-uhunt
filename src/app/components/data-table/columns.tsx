@@ -116,6 +116,7 @@ export const columns: ColumnDef<Submission>[] = [
         </p>
       );
     },
+    enableSorting: false,
   },
   {
     accessorKey: "runtime",
@@ -132,6 +133,7 @@ export const columns: ColumnDef<Submission>[] = [
         </p>
       );
     },
+    enableSorting: false,
   },
   {
     accessorKey: "rank",
@@ -148,6 +150,7 @@ export const columns: ColumnDef<Submission>[] = [
         </p>
       );
     },
+    enableSorting: false,
   },
   {
     accessorKey: "submitTime",
@@ -164,5 +167,6 @@ export const columns: ColumnDef<Submission>[] = [
         </p>
       );
     },
+    enableSorting: false,
   },
 ]
