@@ -6,6 +6,12 @@ import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { DataTableColumnHeader } from "@/components/ui/data-table/column-header";
 import { Submission } from "@/types"
 import { cn } from "@/lib/utils";
@@ -195,9 +201,18 @@ export const columns: ColumnDef<Submission>[] = [
     },
     cell: ({ row }) => {
       return (
-        <p className="text-right">
-          {moment.unix(row.getValue('submitTime')).fromNow()}
-        </p>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <p className="text-right">
+                {moment.unix(row.getValue('submitTime')).fromNow()}
+              </p>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Submitted at {moment.unix(row.getValue('submitTime')).toLocaleString()}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       );
     },
     enableSorting: false,
