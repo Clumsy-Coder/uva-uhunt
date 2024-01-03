@@ -1,6 +1,7 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
+import moment from "moment";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -136,6 +137,22 @@ export const columns: ColumnDef<Submission>[] = [
       return (
         <p>
           {row.getValue('rank')}
+        </p>
+      );
+    },
+  },
+  {
+    accessorKey: "submitTime",
+    accessorFn: row => row.msg.sbt,
+    header: ({ column }) => {
+      return (
+        <DataTableColumnHeader column={column} title="Submit Time" />
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <p>
+          {moment.unix(row.getValue('submitTime')).fromNow()}
         </p>
       );
     },
