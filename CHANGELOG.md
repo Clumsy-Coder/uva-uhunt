@@ -1,3 +1,19 @@
+## [1.0.0-development.4](https://github.com/Clumsy-Coder/uva-uhunt/compare/1.0.0-development.3...1.0.0-development.4) (2024-1-3)
+
+
+### :sparkles: Features
+
+* **components:data-table:** display `language` in live submissions data-table ([dd6e3db](https://github.com/Clumsy-Coder/uva-uhunt/commit/dd6e3dbfc0e0d34d861bcb258fea359dcace996c))
+* **components:data-table:** display `problem number` in live submissions data-table ([44f75d5](https://github.com/Clumsy-Coder/uva-uhunt/commit/44f75d5e7636f3155f022f4a11d0677df5c41cc1))
+* **components:data-table:** display `problem title` in live submissions data-table ([6c131eb](https://github.com/Clumsy-Coder/uva-uhunt/commit/6c131eb60bd4c94e8cd5d68d10d71cca1d3c1527))
+* **components:data-table:** display `rank` in live submissions data-table ([293387b](https://github.com/Clumsy-Coder/uva-uhunt/commit/293387bb1ca547ff5fedc386d810e2432f48b789))
+* **components:data-table:** display `runtime` in live submissions data-table ([b319bfe](https://github.com/Clumsy-Coder/uva-uhunt/commit/b319bfe872d7faa3b3bf79122bb4e878ee023eb4))
+* **components:data-table:** display `submit time` in live submissions data-table ([77e225e](https://github.com/Clumsy-Coder/uva-uhunt/commit/77e225efb8342ea390aae846eeb90d91ef695c01))
+* **components:data-table:** display `username` in live submissions data-table ([3ad7c53](https://github.com/Clumsy-Coder/uva-uhunt/commit/3ad7c53efa4816d41bb288bcfa71284d1d8f06c6))
+* **components:data-table:** display `verdict` in live submissions data-table ([7b57189](https://github.com/Clumsy-Coder/uva-uhunt/commit/7b5718967bc0f16a9cfd4b423fda2a9410534369))
+* **components:data-table:** display submit time using tooltip ([30c02eb](https://github.com/Clumsy-Coder/uva-uhunt/commit/30c02eb561d046316feb77d6674f48e2338a9e2f))
+* **page:home:** display the `DataTable` for live submissions ([fc356b1](https://github.com/Clumsy-Coder/uva-uhunt/commit/fc356b1569ece65edf57c9b5e4c715cf444c9128))
+
 ## [1.0.0-development.3](https://github.com/Clumsy-Coder/uva-uhunt/compare/1.0.0-development.2...1.0.0-development.3) (2024-1-2)
 
 
