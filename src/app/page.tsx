@@ -12,7 +12,8 @@ import {
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { useFetchLiveSubmission } from "@/hooks";
-import LiveSubmissionTable from "./LiveSubmissionTable";
+import { DataTable } from "@/components/ui/data-table";
+import { columns } from "@/app/components/data-table/columns";
 
 const Loading = () => {
   return (
@@ -72,7 +73,7 @@ export default function Home() {
 
   return (
     <div>
-      <LiveSubmissionTable data={data} />
+      <DataTable data={data} columns={columns} />
     </div>
   );
 }
