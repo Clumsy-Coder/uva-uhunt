@@ -14,9 +14,10 @@ export const columns: ColumnDef<Submission>[] = [
   {
     accessorKey: "submissionId",
     accessorFn: row => row.msg.sid,
-    // meta: {
-    //   headerTitle: "Submission ID"
-    // },
+    meta: {
+      // for displaying the columns dropdown
+      headerTitle: "Submission ID"
+    },
     header: ({ column }) => {
       return (
         <DataTableColumnHeader column={column} title="Submission ID" />
@@ -33,6 +34,10 @@ export const columns: ColumnDef<Submission>[] = [
   {
     accessorKey: "problemNum",
     accessorFn: row => row.msg.pnum,
+    meta: {
+      // for displaying the columns dropdown
+      headerTitle: "Problem Number"
+    },
     header: ({ column }) => {
       return (
         <DataTableColumnHeader column={column} title="Problem number" />
@@ -49,6 +54,10 @@ export const columns: ColumnDef<Submission>[] = [
   {
     accessorKey: "problemTitle",
     accessorFn: row => row.msg.pTitle,
+    meta: {
+      // for displaying the columns dropdown
+      headerTitle: "Problem Title"
+    },
     header: ({ column }) => {
       return (
         <DataTableColumnHeader column={column} title="Problem Title" />
@@ -65,6 +74,10 @@ export const columns: ColumnDef<Submission>[] = [
   {
     accessorKey: "username",
     accessorFn: row => `${row.msg.name} (${row.msg.uname})`,
+    meta: {
+      // for displaying the columns dropdown
+      headerTitle: "User (username)"
+    },
     header: ({ column }) => {
       return (
         <DataTableColumnHeader column={column} title="User (username)" />
@@ -81,6 +94,10 @@ export const columns: ColumnDef<Submission>[] = [
   {
     accessorKey: "verdict",
     accessorFn: row => row.msg.verdict.title,
+    meta: {
+      // for displaying the columns dropdown
+      headerTitle: "Verdict"
+    },
     header: ({ column }) => {
       return (
         <DataTableColumnHeader column={column} title="Verdict" />
@@ -104,6 +121,10 @@ export const columns: ColumnDef<Submission>[] = [
   {
     accessorKey: "language",
     accessorFn: row => row.msg.lan,
+    meta: {
+      // for displaying the columns dropdown
+      headerTitle: "Language"
+    },
     header: ({ column }) => {
       return (
         <DataTableColumnHeader column={column} title="Language" />
@@ -121,6 +142,10 @@ export const columns: ColumnDef<Submission>[] = [
   {
     accessorKey: "runtime",
     accessorFn: row => row.msg.run,
+    meta: {
+      // for displaying the columns dropdown
+      headerTitle: "Runtime"
+    },
     header: ({ column }) => {
       return (
         <DataTableColumnHeader column={column} title="Runtime" />
@@ -138,6 +163,10 @@ export const columns: ColumnDef<Submission>[] = [
   {
     accessorKey: "rank",
     accessorFn: row => row.msg.rank,
+    meta: {
+      // for displaying the columns dropdown
+      headerTitle: "Rank"
+    },
     header: ({ column }) => {
       return (
         <DataTableColumnHeader column={column} title="Rank" />
@@ -155,6 +184,10 @@ export const columns: ColumnDef<Submission>[] = [
   {
     accessorKey: "submitTime",
     accessorFn: row => row.msg.sbt,
+    meta: {
+      // for displaying the columns dropdown
+      headerTitle: "Submit Time"
+    },
     header: ({ column }) => {
       return (
         <DataTableColumnHeader column={column} title="Submit Time" className="whitespace-nowrap text-right" />
