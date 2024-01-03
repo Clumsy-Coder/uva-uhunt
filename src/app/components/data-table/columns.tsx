@@ -3,6 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table"
 import Link from "next/link";
 
+import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { DataTableColumnHeader } from "@/components/ui/data-table/column-header";
 import { Submission } from "@/types"
@@ -72,6 +73,22 @@ export const columns: ColumnDef<Submission>[] = [
         <Link href={`/users/${row.original.msg.uname}`} className={buttonVariants({variant: 'outline'})}>
           {row.getValue("username")}
         </Link>
+      );
+    },
+  },
+  {
+    accessorKey: "verdict",
+    accessorFn: row => row.msg.verdict.title,
+    header: ({ column }) => {
+      return (
+        <DataTableColumnHeader column={column} title="Verdict" />
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <Badge variant='outline' className={`rounded-md text-md whitespace-nowrap ${row.original.msg.verdict.bgColor}`}>
+          {row.getValue("verdict")}
+        </Badge>
       );
     },
   },
