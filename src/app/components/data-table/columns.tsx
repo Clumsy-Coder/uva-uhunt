@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { DataTableColumnHeader } from "@/components/ui/data-table/column-header";
 import { Submission } from "@/types"
+import { cn } from "@/lib/utils";
 
 export const columns: ColumnDef<Submission>[] = [
   {
@@ -23,7 +24,7 @@ export const columns: ColumnDef<Submission>[] = [
     },
     cell: ({ row }) => {
       return (
-        <Link href={`/submissions/${row.getValue("submissionId")}`} className={buttonVariants({variant: 'outline'})}>
+        <Link href={`/submissions/${row.getValue("submissionId")}`} className="text-primary underline-offset-4 hover:underline">
           {row.getValue("submissionId")}
         </Link>
       );
@@ -39,7 +40,7 @@ export const columns: ColumnDef<Submission>[] = [
     },
     cell: ({ row }) => {
       return (
-        <Link href={`/problems/${row.getValue("problemNum")}`} className={buttonVariants({variant: 'outline'})}>
+        <Link href={`/problems/${row.getValue("problemNum")}`} className="text-primary underline-offset-4 hover:underline">
           {row.getValue("problemNum")}
         </Link>
       );
@@ -55,7 +56,7 @@ export const columns: ColumnDef<Submission>[] = [
     },
     cell: ({ row }) => {
       return (
-        <Link href={`/problems/${row.original.msg.pnum}`} className={buttonVariants({variant: 'outline'})}>
+        <Link href={`/problems/${row.original.msg.pnum}`} className="text-primary underline-offset-4 hover:underline">
           {row.getValue("problemTitle")}
         </Link>
       );
@@ -71,7 +72,7 @@ export const columns: ColumnDef<Submission>[] = [
     },
     cell: ({ row }) => {
       return (
-        <Link href={`/users/${row.original.msg.uname}`} className={buttonVariants({variant: 'outline'})}>
+        <Link href={`/users/${row.original.msg.uname}`} className="text-primary underline-offset-4 hover:underline">
           {row.getValue("username")}
         </Link>
       );
@@ -87,7 +88,14 @@ export const columns: ColumnDef<Submission>[] = [
     },
     cell: ({ row }) => {
       return (
-        <Badge variant='outline' className={`rounded-md text-md whitespace-nowrap ${row.original.msg.verdict.bgColor}`}>
+        <Badge
+          variant="outline"
+          className={cn(
+            'rounded-md text-md capitalize whitespace-nowrap',
+            row.original.msg.verdict.bgColor,
+            row.original.msg.verdict.fgColor,
+          )}
+        >
           {row.getValue("verdict")}
         </Badge>
       );
@@ -146,16 +154,15 @@ export const columns: ColumnDef<Submission>[] = [
     accessorFn: row => row.msg.sbt,
     header: ({ column }) => {
       return (
-        <DataTableColumnHeader column={column} title="Submit Time" />
+        <DataTableColumnHeader column={column} title="Submit Time" className="whitespace-nowrap text-right" />
       );
     },
     cell: ({ row }) => {
       return (
-        <p>
+        <p className="text-right">
           {moment.unix(row.getValue('submitTime')).fromNow()}
         </p>
       );
     },
   },
 ]
-
