@@ -1,52 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Skeleton } from '@/components/ui/skeleton'
 
 import { useFetchLiveSubmission } from "@/hooks";
 import { DataTable } from "@/components/ui/data-table";
+import DataTableLoading from "@/components/ui/data-table/loading";
 import { columns } from "@/app/components/data-table/columns";
-
-const Loading = () => {
-  return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Submission ID</TableHead>
-          <TableHead>Problem number</TableHead>
-          <TableHead>Problem title</TableHead>
-          <TableHead>User (username)</TableHead>
-          <TableHead className="text-center">Verdict</TableHead>
-          <TableHead>Language</TableHead>
-          <TableHead>Time</TableHead>
-          <TableHead>Rank</TableHead>
-          <TableHead className="text-right">Submit time</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {[...Array(10)].map((_, i) => {
-          return (
-            <TableRow key={`row-${i}`}>
-              {[...Array(9)].map((_, k) => (
-                <TableCell key={`row-${i}-cell-${k}`}>
-                  <Skeleton className="w-full h-4" />
-                </TableCell>
-              ))}
-            </TableRow>
-          );
-        })}
-      </TableBody>
-    </Table>
-  );
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -59,7 +18,7 @@ export default function Home() {
   const { data, isLoading, isError, isSuccess } = useFetchLiveSubmission(pollIdRef.current);
 
   if (isLoading || !data) {
-    return <Loading />
+    return <DataTableLoading numColumns={9} numRows={9} />
 ;
   }
 
