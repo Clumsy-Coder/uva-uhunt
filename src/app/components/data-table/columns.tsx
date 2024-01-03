@@ -59,5 +59,21 @@ export const columns: ColumnDef<Submission>[] = [
       );
     },
   },
+  {
+    accessorKey: "username",
+    accessorFn: row => `${row.msg.name} (${row.msg.uname})`,
+    header: ({ column }) => {
+      return (
+        <DataTableColumnHeader column={column} title="User (username)" />
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <Link href={`/users/${row.original.msg.uname}`} className={buttonVariants({variant: 'outline'})}>
+          {row.getValue("username")}
+        </Link>
+      );
+    },
+  },
 ]
 
