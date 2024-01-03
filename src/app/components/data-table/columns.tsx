@@ -30,7 +30,7 @@ export const columns: ColumnDef<Submission>[] = [
       return (
         <Link
           href={`/submissions/${row.getValue("submissionId")}`}
-          className="text-primary underline-offset-4 hover:underline"
+          className="text-primary underline-offset-4 hover:underline py-4 px-1"
         >
           {row.getValue("submissionId")}
         </Link>
@@ -51,7 +51,7 @@ export const columns: ColumnDef<Submission>[] = [
       return (
         <Link
           href={`/problems/${row.getValue("problemNum")}`}
-          className="text-primary underline-offset-4 hover:underline"
+          className="text-primary underline-offset-4 hover:underline py-4 px-1"
         >
           {row.getValue("problemNum")}
         </Link>
@@ -72,7 +72,7 @@ export const columns: ColumnDef<Submission>[] = [
       return (
         <Link
           href={`/problems/${row.original.msg.pnum}`}
-          className="text-primary underline-offset-4 hover:underline"
+          className="text-primary underline-offset-4 hover:underline py-4 px-1"
         >
           {row.getValue("problemTitle")}
         </Link>
@@ -93,7 +93,7 @@ export const columns: ColumnDef<Submission>[] = [
       return (
         <Link
           href={`/users/${row.original.msg.uname}`}
-          className="text-primary underline-offset-4 hover:underline"
+          className="text-primary underline-offset-4 hover:underline py-4 px-1"
         >
           {row.getValue("username")}
         </Link>
