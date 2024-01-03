@@ -43,5 +43,21 @@ export const columns: ColumnDef<Submission>[] = [
       );
     },
   },
+  {
+    accessorKey: "problemTitle",
+    accessorFn: row => row.msg.pTitle,
+    header: ({ column }) => {
+      return (
+        <DataTableColumnHeader column={column} title="Problem Title" />
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <Link href={`/problems/${row.original.msg.pnum}`} className={buttonVariants({variant: 'outline'})}>
+          {row.getValue("problemTitle")}
+        </Link>
+      );
+    },
+  },
 ]
 
