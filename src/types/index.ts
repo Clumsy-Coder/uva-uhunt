@@ -113,19 +113,19 @@ export type VerdictType = {
 };
 
 export const Verdict: Record<string, VerdictType> = {
-  0 : { fgColor: "", bgColor: "bg-gray-500",    title: "- In Queue -"         },
-  10: { fgColor: "", bgColor: "bg-gray-500",    title: "Submission error"     },
-  15: { fgColor: "", bgColor: "bg-gray-500",    title: "Can't be judged"      },
-  20: { fgColor: "", bgColor: "bg-gray-500",    title: "- In Queue -"         },
-  30: { fgColor: "", bgColor: "bg-orange-600",  title: "Compile error"        },
-  35: { fgColor: "", bgColor: "bg-gray-500",    title: "Restricted function"  },
-  40: { fgColor: "", bgColor: "bg-[#00AAAA]",   title: "Runtime error"        },
-  45: { fgColor: "", bgColor: "bg-[#000066]",   title: "Output limit"         },
-  50: { fgColor: "", bgColor: "bg-[#0000FF]",   title: "Time limit"           },
-  60: { fgColor: "", bgColor: "bg-[#0000AA]",   title: "Memory limit"         },
-  70: { fgColor: "", bgColor: "bg-[#FF0000]",   title: "Wrong answer"         },
-  80: { fgColor: "", bgColor: "bg-[#666600]",   title: "Presentation error"   },
-  90: { fgColor: "", bgColor: "bg-[#00AA00]",   title: "Accepted"             },
+  0 : { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-gray-500",    title: "- In Queue -"         },
+  10: { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-gray-500",    title: "Submission error"     },
+  15: { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-gray-500",    title: "Can't be judged"      },
+  20: { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-gray-500",    title: "- In Queue -"         },
+  30: { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-orange-600",  title: "Compile error"        },
+  35: { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-gray-500",    title: "Restricted function"  },
+  40: { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-[#00AAAA]",   title: "Runtime error"        },
+  45: { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-[#000066]",   title: "Output limit"         },
+  50: { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-[#0000FF]",   title: "Time limit"           },
+  60: { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-[#0000AA]",   title: "Memory limit"         },
+  70: { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-[#FF0000]",   title: "Wrong answer"         },
+  80: { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-[#666600]",   title: "Presentation error"   },
+  90: { fgColor: "text-primary-foreground dark:text-secondary-foreground", bgColor: "bg-[#00AA00]",   title: "Accepted"             },
 };
 
 export const Language: Record<string, string> = {
