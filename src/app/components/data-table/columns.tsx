@@ -124,5 +124,21 @@ export const columns: ColumnDef<Submission>[] = [
       );
     },
   },
+  {
+    accessorKey: "rank",
+    accessorFn: row => row.msg.rank,
+    header: ({ column }) => {
+      return (
+        <DataTableColumnHeader column={column} title="Rank" />
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <p>
+          {row.getValue('rank')}
+        </p>
+      );
+    },
+  },
 ]
 
