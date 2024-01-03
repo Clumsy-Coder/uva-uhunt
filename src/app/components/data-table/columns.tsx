@@ -27,5 +27,21 @@ export const columns: ColumnDef<Submission>[] = [
       );
     },
   },
+  {
+    accessorKey: "problemNum",
+    accessorFn: row => row.msg.pnum,
+    header: ({ column }) => {
+      return (
+        <DataTableColumnHeader column={column} title="Problem number" />
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <Link href={`/problems/${row.getValue("problemNum")}`} className={buttonVariants({variant: 'outline'})}>
+          {row.getValue("problemNum")}
+        </Link>
+      );
+    },
+  },
 ]
 
