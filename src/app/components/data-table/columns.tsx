@@ -108,5 +108,21 @@ export const columns: ColumnDef<Submission>[] = [
       );
     },
   },
+  {
+    accessorKey: "runtime",
+    accessorFn: row => row.msg.run,
+    header: ({ column }) => {
+      return (
+        <DataTableColumnHeader column={column} title="Runtime" />
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <p>
+          {(row.getValue('runtime') as number / 1000).toFixed(3)}
+        </p>
+      );
+    },
+  },
 ]
 
