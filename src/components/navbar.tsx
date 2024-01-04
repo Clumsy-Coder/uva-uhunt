@@ -31,6 +31,7 @@ const Navbar = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
               className={cn(
                 "nav-link",
                 pathname === link.href && "active-nav-link",
+                "first:text-lg first:font-bold first:mr-8",
               )}
             >
               {link.label}
