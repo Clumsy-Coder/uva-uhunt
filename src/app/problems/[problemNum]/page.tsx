@@ -1,10 +1,37 @@
 "use client";
 
-import { useFetchProblemNum } from "@/hooks";
-import { problemNumSchema } from "@/schema";
 import { AxiosError } from "axios";
 import { z } from "zod";
+
 import Error from "@/components/error";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { useFetchProblemNum } from "@/hooks";
+import { problemNumSchema } from "@/schema";
+
+
+type ChartCard = {
+  title: string;
+  chart: React.ReactNode;
+}
+const ChartCard = ({title, chart}: ChartCard) => {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {chart}
+      </CardContent>
+    </Card>
+  );
+}
 
 type problemPageProps = {
   params: z.infer<typeof problemNumSchema>;
@@ -57,7 +84,22 @@ const ProblemPage = ({ params }: problemPageProps) => {
   console.log("problem page: ", params.problemNum);
   return (
     <section>
-      <h1 className="text-3xl">Problem page: {params.problemNum}</h1>
+      <h1 className="text-3xl mb-4">Problem page: {params.problemNum}</h1>
+      <div className="grid lg:grid-cols-2 gap-4 mb-4">
+        <div className="w-full">
+          <ChartCard title="Problem Verdicts" />
+        </div>
+        <div className="w-full">
+          <ChartCard title="Submissions overtime" />
+        </div>
+        <div className="w-full">
+          <ChartCard title="Submission by language" />
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        <div>ranklist</div>
+        <div>submissions</div>
+      </div>
     </section>
   );
 };
