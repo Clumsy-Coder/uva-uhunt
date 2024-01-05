@@ -28,7 +28,17 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
 
   const response = await fetch(url);
   const data: Problem = await response.json();
-  data.status = ProblemStatus[data.status as unknown as number]
+
+  if(Object.entries(data).length === 0) {
+    const message = {
+      message: `Problem number ${problemNum} not found`
+    }
+    return NextResponse.json(message, {
+      status: 404,
+    });
+  }
+
+  data.status = ProblemStatus[data.status]
 
   return Response.json(data);
 };
