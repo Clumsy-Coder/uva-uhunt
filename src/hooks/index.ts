@@ -12,6 +12,10 @@ export enum queryKey {
    * Reacy query key for fetching all problems
    */
   allProblems = "all-problems",
+  /**
+   * React query key for fetching a problem num
+   */
+  problemNum = "problem-num"
 }
 
 /**
@@ -44,3 +48,12 @@ export const useFetchProblems = () => {
   });
 };
 
+/**
+ * Fetch stats of a problem using problem number
+ */
+export const useFetchProblemNum = (problemNum: number) => {
+  return useQuery({
+    queryKey: [queryKey.problemNum],
+    queryFn: async () => await axios.get(`/api/problems/${problemNum}`),
+  })
+}
