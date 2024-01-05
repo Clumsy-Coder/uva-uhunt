@@ -3,19 +3,13 @@ import { z } from "zod";
 
 import { uhuntProblemNumUrl } from "@/utils/constants";
 import { Problem, ProblemStatus } from "@/types";
+import { problemNumSchema as schema } from "@/schema";
 
 type getParamsType = {
-  params: {
-    problemNum: string;
-  };
+  params: z.infer<typeof schema>;
 };
 
 export const GET = async (_request: Request, { params }: getParamsType) => {
-  const schema = z.object({
-    problemNum: z.coerce
-      .number({ invalid_type_error: "Must be a number" })
-      .min(1, "Must be a number greater than 0"),
-  });
 
   const schemaResponse = await schema.safeParseAsync(params);
   if (!schemaResponse.success) {
