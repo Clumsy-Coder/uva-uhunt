@@ -4,6 +4,57 @@ export const ProblemStatus: Record<string, string> = {
   2: "Special judge",
 };
 
+export const ProblemVerdictMap: Record<string, string> = {
+  /**
+   * Number of Accepted
+   */
+  ac: "Accepted",
+  /**
+   * Number of Presentation Error
+   */
+  pe: "Presentation error",
+  /**
+   * Number of Wrong Answer
+   */
+  wa: "Wrong answer",
+  /**
+   * Number of Time Limit Exceeded
+   */
+  tle: "Time limit exceeded",
+  /**
+   * Number of Memory Limit Exceeded
+   */
+  mle: "Memory limit exceeded",
+  /**
+   * Number of Compilation Error
+   */
+  ce: "Compile error",
+  /**
+   * Number of Runtime Error
+   */
+  re: "Runtime error",
+  /**
+   * Number of Output Limit Exceeded
+   */
+  ole: "Output limit exceeded",
+  /**
+   * Number of Submission Error
+   */
+  // sube: "Submission Error",
+  /**
+   * Number of Can't be Judged
+   */
+  // noj: "Can't be judged",
+  /**
+   * Number of In Queue
+   */
+  // inq: number,
+  /**
+   * Number of Restricted Function
+   */
+  // rf: "Restricted function",
+}
+
 /**
  * Data structure returned when querying from url `https://uhunt.onlinejudge.org/api/p/num/:num`
  *
