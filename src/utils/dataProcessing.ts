@@ -1,4 +1,4 @@
-import { Problem, ProblemVerdictColors, ProblemVerdictMap } from "@/types";
+import { Problem, ProblemVerdictMap, ProblemVerdictType } from "@/types";
 
 export type processedProblemVerdictBarChartType = {
   /**
@@ -21,14 +21,24 @@ export type processedProblemVerdictBarChartType = {
   fill: string;
 };
 export const processProblemNumBarChartData = (data: Problem) => {
+  // filter out the ProblemVerdictMap object and keep keys from `filter` array
+  const filter = ["ac", "pe", "wa", "tle", "mle", "ce", "re", "ole"]
+  // const filteredVerdicts: Record<string, ProblemVerdictType> = {}
+  // filter.forEach(( key: string ) => {
+  //   filteredVerdicts[key] = ProblemVerdictMap[key]
+  // })
+  //
+  // obtained from https://stackoverflow.com/a/69676994/3053548
+  const filteredVerdicts: Record<string, ProblemVerdictType> = Object.fromEntries(filter.map(k => [k, ProblemVerdictMap[k]]))
+
   const processedData:processedProblemVerdictBarChartType[] = []
 
-  for(const [key, value] of Object.entries(ProblemVerdictMap)) {
+  for(const [key, value] of Object.entries(filteredVerdicts)) {
     processedData.push({
       name: key.toUpperCase(),
       verdict: data[key as keyof Problem] as number,
-      tooltipTitle: value,
-      fill: ProblemVerdictColors[key],
+      tooltipTitle: value.title,
+      fill: ProblemVerdictMap[key].bgHex,
     })
   }
 
