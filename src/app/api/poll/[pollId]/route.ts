@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import axios from "axios";
 
-import { Language, Problem, Submission, Verdict } from "@/types";
+import { Language, Problem, Submission, ProblemVerdictMap } from "@/types";
 import { fetchLiveSubmissionsUrl, uhuntProblemIdUrl } from "@/utils/constants";
 
 type getParamsType = {
@@ -38,10 +38,12 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
 
   const converted = data
     .map(async (submission: Submission) => {
-      submission.msg.verdict = Verdict[submission.msg.ver] || {
-        fgColor: "",
-        bgColor: "",
+      submission.msg.verdict = ProblemVerdictMap[submission.msg.ver] || {
+        fgColor: "text-primary-foreground dark:text-secondary-foreground",
+        bgColor: "bg-gray-500",
         title: "- In Queue -",
+        fgHex: "",
+        bgHex: "6b7280",
       };
       submission.msg.lan = Language[submission.msg.lan] || "--";
 
