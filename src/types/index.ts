@@ -1,3 +1,12 @@
+/*
+ * Contains all types for the upstream api server (uva uhunt https://uhunt.onlinejudge.org/api )
+ *
+ * This file also contains objects that are used to convert a number from any of these types
+ * into a string. Ex: (submission verdict ID converted to a string).
+ */
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 export const ProblemStatus: Record<string, string> = {
   0: "Unavailable",
   1: "Normal",
