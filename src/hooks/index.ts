@@ -15,7 +15,11 @@ export enum queryKey {
   /**
    * React query key for fetching a problem num
    */
-  problemNum = "problem-num"
+  problemNum = "problem-num",
+  /**
+   * React query key for fetching submission overtime count
+   */
+  submissionCount = "submission-overtime",
 }
 
 /**
@@ -56,4 +60,17 @@ export const useFetchProblemNum = (problemNum: number) => {
     queryKey: [queryKey.problemNum],
     queryFn: async () => await axios.get(`/api/problems/${problemNum}`),
   })
+}
+
+/**
+ * Fetch submissions overtime count
+ */
+export const useFetchSubmissionCount = (problemNum: number) => {
+  return useQuery({
+    queryKey: [queryKey.submissionCount],
+    queryFn: async () =>
+      await axios
+        .get(`/api/submissions/overtime/${problemNum}`)
+        .then((res) => res.data),
+  });
 }
