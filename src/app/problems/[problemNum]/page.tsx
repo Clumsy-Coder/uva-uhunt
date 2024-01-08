@@ -10,10 +10,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { useFetchProblemNum } from "@/hooks";
+import { useFetchProblemNum, useFetchSubmissionCount } from "@/hooks";
 import { problemNumSchema } from "@/schema";
 import { processProblemNumBarChartData } from "@/utils/dataProcessing";
 import ProblemVerdictChart from "@/components/charts/ProblemVerdictChart";
+import SubmissionsOvertimeChart from "@/components/charts/SubmissionsOvertimeChart";
 
 type problemPageProps = {
   params: z.infer<typeof problemNumSchema>;
@@ -27,8 +28,16 @@ const ProblemPage = ({ params }: problemPageProps) => {
     data: problemNumData,
     error: problemNumError,
   } = useFetchProblemNum(params.problemNum);
+  const {
+    isLoading: submissionCountIsLoading,
+    isSuccess: submissionCountIsSuccess,
+    isError: submissionCountIsError,
+    data: submissionCountData,
+    error: submissionCountError,
+  } = useFetchSubmissionCount(params.problemNum)
 
-  if (problemNumIsLoading || !problemNumData  || problemNumData.data === undefined) {
+  if (( problemNumIsLoading || !problemNumData  || problemNumData.data === undefined ) ||
+      ( submissionCountIsLoading || !submissionCountData)) {
     return (
       <section>
         <h1 className="text-3xl">Loading: {params.problemNum}</h1>
@@ -68,6 +77,7 @@ const ProblemPage = ({ params }: problemPageProps) => {
     <section>
       <h1 className="text-3xl mb-4">Problem page: {params.problemNum}</h1>
       <div className="grid lg:grid-cols-2 gap-4 mb-4">
+        {/* Submission verdicts bar chart  */}
         <div className="w-full">
           <Card>
             <CardHeader>
@@ -78,8 +88,16 @@ const ProblemPage = ({ params }: problemPageProps) => {
             </CardContent>
           </Card>
         </div>
+        {/* Submissions overtime line chart */}
         <div className="w-full">
-          {/* <ChartCard title="Submissions overtime" /> */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Submissions overtime</CardTitle>
+            </CardHeader>
+            <CardContent className="h-[400px]">
+              <SubmissionsOvertimeChart data={submissionCountData} />
+            </CardContent>
+          </Card>
         </div>
         <div className="w-full">
           {/* <ChartCard title="Submission by language" /> */}
