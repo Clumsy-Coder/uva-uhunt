@@ -20,6 +20,10 @@ export enum queryKey {
    * React query key for fetching submission overtime count
    */
   submissionCount = "submission-overtime",
+  /**
+   * React query key for fetching submission by language
+   */
+  submissionLang = "submission-language",
 }
 
 /**
@@ -74,3 +78,17 @@ export const useFetchSubmissionCount = (problemNum: number) => {
         .then((res) => res.data),
   });
 }
+
+/**
+ * Fetch submissions by language
+ */
+export const useFetchSubmissionLang = (problemNum: number) => {
+  return useQuery({
+    queryKey: [queryKey.submissionLang],
+    queryFn: async () =>
+      await axios
+        .get(`/api/submissions/language/${problemNum}`)
+        .then((res) => res.data),
+  });
+}
+
