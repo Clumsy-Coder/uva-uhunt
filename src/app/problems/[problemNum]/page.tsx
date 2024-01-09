@@ -10,11 +10,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { useFetchProblemNum, useFetchSubmissionCount } from "@/hooks";
+import { useFetchProblemNum, useFetchSubmissionCount, useFetchSubmissionLang } from "@/hooks";
 import { problemNumSchema } from "@/schema";
 import { processProblemNumBarChartData } from "@/utils/dataProcessing";
 import ProblemVerdictChart from "@/components/charts/ProblemVerdictChart";
 import SubmissionsOvertimeChart from "@/components/charts/SubmissionsOvertimeChart";
+import SubmissionLanguageRadarChart from "@/components/charts/SubmissionLanguageRadarChart";
 
 type problemPageProps = {
   params: z.infer<typeof problemNumSchema>;
@@ -35,9 +36,19 @@ const ProblemPage = ({ params }: problemPageProps) => {
     data: submissionCountData,
     error: submissionCountError,
   } = useFetchSubmissionCount(params.problemNum)
+  const {
+    isLoading: submissionLangIsLoading,
+    isSuccess: submissionLangIsSuccess,
+    isError: submissionLangIsError,
+    data: submissionLangData,
+    error: submissionLangError,
+  } = useFetchSubmissionLang(params.problemNum);
+
 
   if (( problemNumIsLoading || !problemNumData  || problemNumData.data === undefined ) ||
-      ( submissionCountIsLoading || !submissionCountData)) {
+      ( submissionCountIsLoading || !submissionCountData) ||
+      ( submissionLangIsLoading || !submissionLangData)
+  ) {
     return (
       <section>
         <h1 className="text-3xl">Loading: {params.problemNum}</h1>
@@ -100,7 +111,14 @@ const ProblemPage = ({ params }: problemPageProps) => {
           </Card>
         </div>
         <div className="w-full">
-          {/* <ChartCard title="Submission by language" /> */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Submissions by language</CardTitle>
+            </CardHeader>
+            <CardContent className="h-[400px]">
+              <SubmissionLanguageRadarChart data={submissionLangData} />
+            </CardContent>
+          </Card>
         </div>
       </div>
       <div className="flex flex-col gap-4">
