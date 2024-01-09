@@ -1,4 +1,5 @@
-import { Problem, ProblemVerdictMap, ProblemVerdictType } from "@/types";
+import { Language, Problem, ProblemVerdictMap, ProblemVerdictType } from "@/types";
+import {getResponseType as submissionLangType} from '@/app/api/submissions/language/[problemNum]/route'
 
 export type processedProblemVerdictBarChartType = {
   /**
@@ -44,3 +45,25 @@ export const processProblemNumBarChartData = (data: Problem) => {
 
   return  processedData 
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+export type processedSubmissionLangType = {
+  language: string;
+  count: number;
+}
+
+export const processSubmissionLanguageRadarChart = (
+  data: submissionLangType,
+): processedSubmissionLangType[] => {
+  const processedData: processedSubmissionLangType[] = [];
+
+  Object.entries(data).forEach(([key, value]) => {
+    processedData.push({
+      language: Language[key],
+      count: value,
+    });
+  });
+
+  return processedData;
+};
