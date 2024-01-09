@@ -74,10 +74,19 @@ export const uhuntUsername2UidUrl = (username: string) =>
 
 /**
  * URL for getting Submission list of a problem using Problem ID
+ * NOTE: this will return a large number of array elements. Recommend to return 1 year worth of submissions
+ *
  * @param {String | Number} pid - problem ID
+ * @param {Number} [startSubmission=moment().subtract(1, 'years').unix()] - Unix timestamp for what time to start searching. Default is 1 year ago
+ * @param {Number} [endSubmission=moment().unix()] - Unix timestamp for what time to end searching. Default is right now
+ * @param {Number} [limit=500] - Number of submissions to return. Default is 500 submissions
  */
-export const uhuntProblemSubmissionListUrl = (pid: string | number) =>
-  `${uhuntBaseApiUrl}/p/subs/${pid}/0/${moment().unix()}`;
+export const uhuntProblemSubmissionListUrl = (
+  pid: string | number,
+  startSubmission = moment().subtract(1, 'years').unix(),
+  endSubmission = moment().unix(),
+  limit = 500
+) => `${uhuntBaseApiUrl}/p/subs/${pid}/${startSubmission}/${endSubmission}/500`;
 
 /**
  * Get User submissions using UserID
