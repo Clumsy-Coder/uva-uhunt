@@ -21,6 +21,10 @@ export enum queryKey {
    */
   problemRanklist = "problem-ranklist",
   /**
+   * React query key for fetching a problem ranklist
+   */
+  problemSubmission = "problem-submission",
+  /**
    * React query key for fetching submission overtime count
    */
   submissionCount = "submission-overtime",
@@ -67,6 +71,7 @@ export const useFetchProblemNum = (problemNum: number) => {
   return useQuery({
     queryKey: [queryKey.problemNum],
     queryFn: async () => await axios.get(`/api/problems/${problemNum}`),
+    refetchOnWindowFocus: false
   })
 }
 
@@ -80,6 +85,7 @@ export const useFetchSubmissionCount = (problemNum: number) => {
       await axios
         .get(`/api/submissions/overtime/${problemNum}`)
         .then((res) => res.data),
+    refetchOnWindowFocus: false
   });
 }
 
@@ -93,6 +99,7 @@ export const useFetchSubmissionLang = (problemNum: number) => {
       await axios
         .get(`/api/submissions/language/${problemNum}`)
         .then((res) => res.data),
+    refetchOnWindowFocus: false
   });
 }
 
@@ -106,5 +113,21 @@ export const useFetchProblemRanklist = (problemNum: number) => {
       await axios
         .get(`/api/problems/ranklist/${problemNum}`)
         .then((res) => res.data),
+    refetchOnWindowFocus: false
   });
 }
+
+/**
+ * Fetch problem submissions
+ */
+export const useFetchProblemSubmission = (problemNum: number) => {
+  return useQuery({
+    queryKey: [queryKey.problemSubmission],
+    queryFn: async () =>
+      await axios
+        .get(`/api/submissions/${problemNum}`)
+        .then((res) => res.data),
+    refetchOnWindowFocus: false
+  });
+}
+
