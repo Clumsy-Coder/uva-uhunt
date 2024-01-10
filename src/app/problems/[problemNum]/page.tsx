@@ -10,12 +10,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { useFetchProblemNum, useFetchSubmissionCount, useFetchSubmissionLang } from "@/hooks";
+import { useFetchProblemNum, useFetchProblemRanklist, useFetchSubmissionCount, useFetchSubmissionLang } from "@/hooks";
 import { problemNumSchema } from "@/schema";
 import { processProblemNumBarChartData } from "@/utils/dataProcessing";
 import ProblemVerdictChart from "@/components/charts/ProblemVerdictChart";
 import SubmissionsOvertimeChart from "@/components/charts/SubmissionsOvertimeChart";
 import SubmissionLanguageRadarChart from "@/components/charts/SubmissionLanguageRadarChart";
+import { DataTable } from "@/components/ui/data-table";
+import { columns } from "./components/data-table/ranklistColumns";
+import VirtualTable from "@/components/virtual-table";
 
 type problemPageProps = {
   params: z.infer<typeof problemNumSchema>;
@@ -43,11 +46,20 @@ const ProblemPage = ({ params }: problemPageProps) => {
     data: submissionLangData,
     error: submissionLangError,
   } = useFetchSubmissionLang(params.problemNum);
+  const {
+    isLoading: problemRanklistIsLoading,
+    isSuccess: problemRanklistIsSuccess,
+    isError: problemRanklistIsError,
+    data:  problemRanklistData,
+    error: problemRanklistError,
+  } = useFetchProblemRanklist(params.problemNum);
 
 
-  if (( problemNumIsLoading || !problemNumData  || problemNumData.data === undefined ) ||
-      ( submissionCountIsLoading || !submissionCountData) ||
-      ( submissionLangIsLoading || !submissionLangData)
+  if (
+    (problemNumIsLoading || !problemNumData || problemNumData.data === undefined) ||
+    (submissionCountIsLoading || !submissionCountData) ||
+    (submissionLangIsLoading || !submissionLangData) ||
+    (problemRanklistIsLoading || !problemRanklistData)
   ) {
     return (
       <section>
@@ -122,7 +134,11 @@ const ProblemPage = ({ params }: problemPageProps) => {
         </div>
       </div>
       <div className="flex flex-col gap-4">
-        <div>ranklist</div>
+        <div>
+          <h1 className="text-3xl mb-4 mt-6">Ranklist (Top 10)</h1>
+          {/* <DataTable columns={columns} data={problemRanklistData} /> */}
+          <VirtualTable columns={columns} data={problemRanklistData} tableHeight={400} />
+        </div>
         <div>submissions</div>
       </div>
     </section>
