@@ -17,6 +17,10 @@ export enum queryKey {
    */
   problemNum = "problem-num",
   /**
+   * React query key for fetching a problem ranklist
+   */
+  problemRanklist = "problem-ranklist",
+  /**
    * React query key for fetching submission overtime count
    */
   submissionCount = "submission-overtime",
@@ -92,3 +96,15 @@ export const useFetchSubmissionLang = (problemNum: number) => {
   });
 }
 
+/**
+ * Fetch problem ranklist
+ */
+export const useFetchProblemRanklist = (problemNum: number) => {
+  return useQuery({
+    queryKey: [queryKey.problemRanklist],
+    queryFn: async () =>
+      await axios
+        .get(`/api/problems/ranklist/${problemNum}`)
+        .then((res) => res.data),
+  });
+}
