@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { useFetchProblemNum, useFetchProblemRanklist, useFetchSubmissionCount, useFetchSubmissionLang } from "@/hooks";
+import { useFetchProblemNum, useFetchProblemRanklist, useFetchProblemSubmission, useFetchSubmissionCount, useFetchSubmissionLang } from "@/hooks";
 import { problemNumSchema } from "@/schema";
 import { processProblemNumBarChartData } from "@/utils/dataProcessing";
 import ProblemVerdictChart from "@/components/charts/ProblemVerdictChart";
@@ -53,13 +53,21 @@ const ProblemPage = ({ params }: problemPageProps) => {
     data:  problemRanklistData,
     error: problemRanklistError,
   } = useFetchProblemRanklist(params.problemNum);
+  const {
+    isLoading: problemSubmissionIsLoading,
+    isSuccess: problemSubmissionIsSuccess,
+    isError: problemSubmissionIsError,
+    data: problemSubmissionData,
+    error: problemSubmissionError,
+  } = useFetchProblemSubmission(params.problemNum);
 
 
   if (
     (problemNumIsLoading || !problemNumData || problemNumData.data === undefined) ||
     (submissionCountIsLoading || !submissionCountData) ||
     (submissionLangIsLoading || !submissionLangData) ||
-    (problemRanklistIsLoading || !problemRanklistData)
+    (problemRanklistIsLoading || !problemRanklistData) ||
+    (problemSubmissionIsLoading || !problemSubmissionData)
   ) {
     return (
       <section>
@@ -139,7 +147,11 @@ const ProblemPage = ({ params }: problemPageProps) => {
           {/* <DataTable columns={columns} data={problemRanklistData} /> */}
           <VirtualTable columns={columns} data={problemRanklistData} tableHeight={400} />
         </div>
-        <div>submissions</div>
+        <div>
+          <h1 className="text-3xl mb-4 mt-6">Submissions</h1>
+          {/* <DataTable columns={columns} data={problemRanklistData} /> */}
+          <VirtualTable columns={columns} data={problemSubmissionData} tableHeight={400} />
+        </div>
       </div>
     </section>
   );
