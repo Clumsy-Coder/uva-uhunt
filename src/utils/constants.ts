@@ -86,7 +86,7 @@ export const uhuntProblemSubmissionListUrl = (
   startSubmission = moment().subtract(1, 'years').unix(),
   endSubmission = moment().unix(),
   limit = 500
-) => `${uhuntBaseApiUrl}/p/subs/${pid}/${startSubmission}/${endSubmission}/500`;
+) => `${uhuntBaseApiUrl}/p/subs/${pid}/${startSubmission}/${endSubmission}/${limit}`;
 
 /**
  * Get User submissions using UserID
