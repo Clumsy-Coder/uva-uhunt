@@ -21,3 +21,10 @@ export const submissionLangSchema = z.object({
     .min(1, "Problem number must be a number greater than 0"),
 })
 
+export const problemNumRanklistSchema = z.object({
+  problemNum: z.coerce
+    .number({ invalid_type_error: "Problem number must be a number" })
+    .min(1, "Problem number must be a number greater than 0"),
+})
+
+
