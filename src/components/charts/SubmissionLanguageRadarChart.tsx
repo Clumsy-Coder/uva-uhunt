@@ -6,6 +6,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
+import { useTheme } from "next-themes";
 
 import ChartTooltip from "@/components/charts/Tooltip";
 import { processSubmissionLanguageRadarChart } from "@/utils/dataProcessing";
@@ -16,11 +17,13 @@ type Props = {
 };
 
 const SubmissionLanguageRadarChart = ({ data }: Props) => {
+  const { theme } = useTheme();
   const processedData = processSubmissionLanguageRadarChart(data);
+
   return (
     <ResponsiveContainer>
       <RadarChart data={processedData} cx="50%" cy="50%" outerRadius="90%">
-        <PolarGrid opacity={0.3} />
+        <PolarGrid opacity={theme === "dark" ? 0.3 : 1.0} />
         <PolarAngleAxis dataKey="language" />
         <Tooltip
           cursor={{ fill: "#d1d5db", opacity: "0.15" }}
