@@ -144,13 +144,11 @@ const ProblemPage = ({ params }: problemPageProps) => {
       <div className="flex flex-col gap-4">
         <div>
           <h1 className="text-3xl mb-4 mt-6">Ranklist (Top 10)</h1>
-          {/* <DataTable columns={columns} data={problemRanklistData} /> */}
-          <VirtualTable columns={columns} data={problemRanklistData} tableHeight={400} />
+          <DataTable columns={columns} data={problemRanklistData} height={400} />
         </div>
         <div>
           <h1 className="text-3xl mb-4 mt-6">Submissions</h1>
-          {/* <DataTable columns={columns} data={problemRanklistData} /> */}
-          <VirtualTable columns={columns} data={problemSubmissionData} tableHeight={400} />
+          <DataTable columns={columns} data={problemSubmissionData} height={400} />
         </div>
       </div>
     </section>
