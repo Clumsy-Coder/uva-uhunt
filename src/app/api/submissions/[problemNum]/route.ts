@@ -53,7 +53,7 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
     problemData.pid,
     moment().subtract(1, "years").unix(),
     moment().unix(),
-    20
+    500
   );
   const submissionResponse = await fetch(submissionsUrl, { cache: "no-cache" });
   const submissionData: Submission["msg"][] = await submissionResponse.json();
