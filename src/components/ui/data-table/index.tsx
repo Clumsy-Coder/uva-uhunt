@@ -37,11 +37,16 @@ import { DataTablePagination } from "@/components/ui/data-table/pagination"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  /**
+   * height of the table. If specified, it will overflow the table contents
+   */
+  height?: number
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  height
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
@@ -128,7 +133,7 @@ export function DataTable<TData, TValue>({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border">
+      <div className={`rounded-md border ${height ? `h-[${height}px] overflow-y-auto` : null}`}>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
