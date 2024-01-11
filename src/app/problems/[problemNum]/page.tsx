@@ -106,7 +106,7 @@ const ProblemPage = ({ params }: problemPageProps) => {
   const processedProblemVerdictData = processProblemNumBarChartData(problemNumData.data)
   return (
     <section>
-      <h1 className="text-3xl mb-4">Problem page: {params.problemNum}</h1>
+      <h1 className="text-3xl mb-4">{params.problemNum}: {problemNumData.data.title}</h1>
       <div className="grid lg:grid-cols-2 gap-4 mb-4">
         {/* Submission verdicts bar chart  */}
         <div className="w-full">
