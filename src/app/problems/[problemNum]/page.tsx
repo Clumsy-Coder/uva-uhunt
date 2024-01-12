@@ -22,6 +22,7 @@ import { columns } from "./components/data-table/ranklistColumns";
 import Loading from "./loading";
 import Link from "next/link";
 import { uhuntViewProblemUrl } from "@/utils/constants";
+import { Problem, Submission } from "@/types";
 
 type problemPageProps = {
   params: z.infer<typeof problemNumSchema>;
@@ -101,16 +102,15 @@ const ProblemPage = ({ params }: problemPageProps) => {
     // console.log(problemNumData);
   }
 
-  const processedProblemVerdictData = processProblemNumBarChartData(problemNumData);
-
+  const processedProblemVerdictData = processProblemNumBarChartData( problemNumData as Problem);
   return (
     <section>
       <Link
-        href={uhuntViewProblemUrl(problemNumData.pid)}
+        href={uhuntViewProblemUrl(( problemNumData as Problem ).pid)}
         className="text-3xl hover:underline"
         target="_blank"
       >
-        {params.problemNum}: {problemNumData.title}
+        {params.problemNum}: {( problemNumData as Problem ).title}
       </Link>
       <div className="grid lg:grid-cols-2 gap-4 mb-4 mt-4">
         {/* Submission verdicts bar chart  */}
@@ -151,7 +151,7 @@ const ProblemPage = ({ params }: problemPageProps) => {
           <h1 className="text-3xl mb-4 mt-6">Ranklist (Top 10)</h1>
           <DataTable
             columns={columns}
-            data={problemRanklistData}
+            data={problemRanklistData as Submission['msg'][]}
             height={400}
           />
         </div>
@@ -159,7 +159,7 @@ const ProblemPage = ({ params }: problemPageProps) => {
           <h1 className="text-3xl mb-4 mt-6">Submissions</h1>
           <DataTable
             columns={columns}
-            data={problemSubmissionData}
+            data={problemSubmissionData as Submission['msg'][]}
             height={400}
           />
         </div>
