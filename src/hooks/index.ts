@@ -70,10 +70,11 @@ export const useFetchProblems = () => {
 export const useFetchProblemNum = (problemNum: number) => {
   return useQuery({
     queryKey: [queryKey.problemNum],
-    queryFn: async () => await axios.get(`/api/problems/${problemNum}`),
-    refetchOnWindowFocus: false
-  })
-}
+    queryFn: async () =>
+      await axios.get(`/api/problems/${problemNum}`).then((res) => res.data),
+    refetchOnWindowFocus: false,
+  });
+};
 
 /**
  * Fetch submissions overtime count
