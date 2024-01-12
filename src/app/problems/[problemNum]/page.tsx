@@ -18,7 +18,7 @@ import SubmissionsOvertimeChart from "@/components/charts/SubmissionsOvertimeCha
 import SubmissionLanguageRadarChart from "@/components/charts/SubmissionLanguageRadarChart";
 import { DataTable } from "@/components/ui/data-table";
 import { columns } from "./components/data-table/ranklistColumns";
-import VirtualTable from "@/components/virtual-table";
+import Loading from "./loading"
 
 type problemPageProps = {
   params: z.infer<typeof problemNumSchema>;
@@ -70,9 +70,7 @@ const ProblemPage = ({ params }: problemPageProps) => {
     (problemSubmissionIsLoading || !problemSubmissionData)
   ) {
     return (
-      <section>
-        <h1 className="text-3xl">Loading: {params.problemNum}</h1>
-      </section>
+      <Loading />
     );
   }
 
