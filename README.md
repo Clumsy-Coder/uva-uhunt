@@ -50,5 +50,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ![Problems page 2](docs/images/page-problems.png)
 
+### Problems page (`/problems/[problemNum]`)
+![Problems num page 1](docs/images/page-problems-num-loading.png)
+
+![Problems num page 2](docs/images/page-problems-num.png)
 
 </details>
