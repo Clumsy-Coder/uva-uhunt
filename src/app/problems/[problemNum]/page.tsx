@@ -4,13 +4,14 @@ import { AxiosError } from "axios";
 import { z } from "zod";
 
 import Error from "@/components/error";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { useFetchProblemNum, useFetchProblemRanklist, useFetchProblemSubmission, useFetchSubmissionCount, useFetchSubmissionLang } from "@/hooks";
+  useFetchProblemNum,
+  useFetchProblemRanklist,
+  useFetchProblemSubmission,
+  useFetchSubmissionCount,
+  useFetchSubmissionLang,
+} from "@/hooks";
 import { problemNumSchema } from "@/schema";
 import { processProblemNumBarChartData } from "@/utils/dataProcessing";
 import ProblemVerdictChart from "@/components/charts/ProblemVerdictChart";
@@ -18,7 +19,7 @@ import SubmissionsOvertimeChart from "@/components/charts/SubmissionsOvertimeCha
 import SubmissionLanguageRadarChart from "@/components/charts/SubmissionLanguageRadarChart";
 import { DataTable } from "@/components/ui/data-table";
 import { columns } from "./components/data-table/ranklistColumns";
-import Loading from "./loading"
+import Loading from "./loading";
 import Link from "next/link";
 import { uhuntViewProblemUrl } from "@/utils/constants";
 
@@ -40,7 +41,7 @@ const ProblemPage = ({ params }: problemPageProps) => {
     isError: submissionCountIsError,
     data: submissionCountData,
     error: submissionCountError,
-  } = useFetchSubmissionCount(params.problemNum)
+  } = useFetchSubmissionCount(params.problemNum);
   const {
     isLoading: submissionLangIsLoading,
     isSuccess: submissionLangIsSuccess,
@@ -52,7 +53,7 @@ const ProblemPage = ({ params }: problemPageProps) => {
     isLoading: problemRanklistIsLoading,
     isSuccess: problemRanklistIsSuccess,
     isError: problemRanklistIsError,
-    data:  problemRanklistData,
+    data: problemRanklistData,
     error: problemRanklistError,
   } = useFetchProblemRanklist(params.problemNum);
   const {
@@ -63,7 +64,6 @@ const ProblemPage = ({ params }: problemPageProps) => {
     error: problemSubmissionError,
   } = useFetchProblemSubmission(params.problemNum);
 
-
   if (
     (problemNumIsLoading || !problemNumData || problemNumData.data === undefined) ||
     (submissionCountIsLoading || !submissionCountData) ||
@@ -71,9 +71,7 @@ const ProblemPage = ({ params }: problemPageProps) => {
     (problemRanklistIsLoading || !problemRanklistData) ||
     (problemSubmissionIsLoading || !problemSubmissionData)
   ) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   if (problemNumIsError) {
@@ -103,10 +101,15 @@ const ProblemPage = ({ params }: problemPageProps) => {
     // console.log(problemNumData);
   }
 
-  const processedProblemVerdictData = processProblemNumBarChartData(problemNumData.data)
+  const processedProblemVerdictData = processProblemNumBarChartData( problemNumData.data);
+
   return (
     <section>
-      <Link href={uhuntViewProblemUrl(problemNumData.data.pid)} className="text-3xl hover:underline" target="_blank">
+      <Link
+        href={uhuntViewProblemUrl(problemNumData.data.pid)}
+        className="text-3xl hover:underline"
+        target="_blank"
+      >
         {params.problemNum}: {problemNumData.data.title}
       </Link>
       <div className="grid lg:grid-cols-2 gap-4 mb-4 mt-4">
@@ -146,11 +149,19 @@ const ProblemPage = ({ params }: problemPageProps) => {
       <div className="flex flex-col gap-4">
         <div>
           <h1 className="text-3xl mb-4 mt-6">Ranklist (Top 10)</h1>
-          <DataTable columns={columns} data={problemRanklistData} height={400} />
+          <DataTable
+            columns={columns}
+            data={problemRanklistData}
+            height={400}
+          />
         </div>
         <div>
           <h1 className="text-3xl mb-4 mt-6">Submissions</h1>
-          <DataTable columns={columns} data={problemSubmissionData} height={400} />
+          <DataTable
+            columns={columns}
+            data={problemSubmissionData}
+            height={400}
+          />
         </div>
       </div>
     </section>
