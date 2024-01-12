@@ -1,3 +1,26 @@
+## [1.0.0-development.5](https://github.com/Clumsy-Coder/uva-uhunt/compare/1.0.0-development.4...1.0.0-development.5) (2024-1-12)
+
+
+### :sparkles: Features
+
+* **api:problemNum:ranklist:** add endpoint `/api/problems/ranklist/[problemNum]` ([1a35cec](https://github.com/Clumsy-Coder/uva-uhunt/commit/1a35cec38173c12ce1078dda8795cc807ebacbd3))
+* **api:problemNum:submission:** add endpoint `/api/submissions/[problemNum]` ([36ed144](https://github.com/Clumsy-Coder/uva-uhunt/commit/36ed1442d43c849501ce540771ec65c300b968ba))
+* **api:submission:language:** add endpoint `/api/submissions/language/[problemNum]` ([fd4c856](https://github.com/Clumsy-Coder/uva-uhunt/commit/fd4c856a0f7943d1476afdc714a726daf3747bbd))
+* **api:submission:** add endpoint `/api/submissions/overtime/[problemNum]` ([304a563](https://github.com/Clumsy-Coder/uva-uhunt/commit/304a5632393094c51671213156267d1d73968ba5))
+* **components:charts:** add `ProblemVerdictChart` component ([2104011](https://github.com/Clumsy-Coder/uva-uhunt/commit/2104011cc6811b4d854ef7e2c88e52cd373046e8))
+* **components:charts:** add `SubmissionLanguageRadarChart` component ([fc5ecfc](https://github.com/Clumsy-Coder/uva-uhunt/commit/fc5ecfc46270ddee9da516ca2952c51232d65a33))
+* **components:charts:** add `SubmissionsOvertimeChart` component ([16d1311](https://github.com/Clumsy-Coder/uva-uhunt/commit/16d1311f4862b8c751cf69c1eeeb2ce5ef8b927a))
+* **components:charts:** add Recharts custom tooltip component ([b6ef657](https://github.com/Clumsy-Coder/uva-uhunt/commit/b6ef6576adaa4d3c2c41244e8abd637f44da09b0))
+* **components:** add `VirtualTable` component ([09259ea](https://github.com/Clumsy-Coder/uva-uhunt/commit/09259ea6136050bb7a0338efd6afdabc4225b18b))
+* **page:problemNum:** fetch stats for `/problems/[problemNum]` page ([afe0752](https://github.com/Clumsy-Coder/uva-uhunt/commit/afe075219fcb5d52a165228ef2d7210c91bf8aa9))
+* **page:problemNum:** render `ProblemVerdictChart` component ([acc2eac](https://github.com/Clumsy-Coder/uva-uhunt/commit/acc2eac151fb0b8c5713df1007c8ad627a0b7fac))
+* **page:problemNum:** render `SubmissionLanguageRadarChart` component ([6ebcb52](https://github.com/Clumsy-Coder/uva-uhunt/commit/6ebcb5272a10374aca6cb3a6bb5a847c3b4ee890))
+* **page:problemNum:** render `SubmissionOvertimeChart` component ([3f2f7c4](https://github.com/Clumsy-Coder/uva-uhunt/commit/3f2f7c4e8af0eeb57736696c36d2164f8572013a))
+* **page:problemNum:** render `VirtualTable` for `Problem submissions` ([d271d90](https://github.com/Clumsy-Coder/uva-uhunt/commit/d271d90ee05dfd43f308c453e9d42947f52d3392))
+* **page:problemNum:** render `VirtualTable` for ranklist ([e3ac245](https://github.com/Clumsy-Coder/uva-uhunt/commit/e3ac24512fd3c74f2f3865cfd1e841e19d2bedd3))
+* **page:problemNum:** set title as link to view problem pdf ([ffd247c](https://github.com/Clumsy-Coder/uva-uhunt/commit/ffd247c5f908514de35828902d65e7840d418124))
+* **shadcn:data-table:** set DataTable height if provided ([c58b14f](https://github.com/Clumsy-Coder/uva-uhunt/commit/c58b14f0c83aaa4a32717dc10716ff25c1a243e8))
+
 ## [1.0.0-development.4](https://github.com/Clumsy-Coder/uva-uhunt/compare/1.0.0-development.3...1.0.0-development.4) (2024-1-3)
 
 
