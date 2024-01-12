@@ -49,7 +49,7 @@ export const useFetchLiveSubmission = (pollId = 0, fetchInterval = 5000) => {
       return data;
     },
     refetchInterval: fetchInterval,
-    staleTime: fetchInterval
+    staleTime: fetchInterval,
   });
 };
 
@@ -60,7 +60,7 @@ export const useFetchProblems = () => {
   return useQuery({
     queryKey: [queryKey.allProblems],
     queryFn: async () => axios.get("/api/problems").then((res) => res.data),
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
 };
 
@@ -86,9 +86,9 @@ export const useFetchSubmissionCount = (problemNum: number) => {
       await axios
         .get(`/api/submissions/overtime/${problemNum}`)
         .then((res) => res.data),
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
-}
+};
 
 /**
  * Fetch submissions by language
@@ -100,9 +100,9 @@ export const useFetchSubmissionLang = (problemNum: number) => {
       await axios
         .get(`/api/submissions/language/${problemNum}`)
         .then((res) => res.data),
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
-}
+};
 
 /**
  * Fetch problem ranklist
@@ -114,9 +114,9 @@ export const useFetchProblemRanklist = (problemNum: number) => {
       await axios
         .get(`/api/problems/ranklist/${problemNum}`)
         .then((res) => res.data),
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
-}
+};
 
 /**
  * Fetch problem submissions
@@ -128,7 +128,6 @@ export const useFetchProblemSubmission = (problemNum: number) => {
       await axios
         .get(`/api/submissions/${problemNum}`)
         .then((res) => res.data),
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
-}
-
+};
