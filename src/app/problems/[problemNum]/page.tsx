@@ -19,6 +19,8 @@ import SubmissionLanguageRadarChart from "@/components/charts/SubmissionLanguage
 import { DataTable } from "@/components/ui/data-table";
 import { columns } from "./components/data-table/ranklistColumns";
 import Loading from "./loading"
+import Link from "next/link";
+import { uhuntViewProblemUrl } from "@/utils/constants";
 
 type problemPageProps = {
   params: z.infer<typeof problemNumSchema>;
@@ -104,8 +106,10 @@ const ProblemPage = ({ params }: problemPageProps) => {
   const processedProblemVerdictData = processProblemNumBarChartData(problemNumData.data)
   return (
     <section>
-      <h1 className="text-3xl mb-4">{params.problemNum}: {problemNumData.data.title}</h1>
-      <div className="grid lg:grid-cols-2 gap-4 mb-4">
+      <Link href={uhuntViewProblemUrl(problemNumData.data.pid)} className="text-3xl hover:underline" target="_blank">
+        {params.problemNum}: {problemNumData.data.title}
+      </Link>
+      <div className="grid lg:grid-cols-2 gap-4 mb-4 mt-4">
         {/* Submission verdicts bar chart  */}
         <div className="w-full">
           <Card>
