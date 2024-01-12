@@ -4,6 +4,7 @@ import { DataTable } from "@/components/ui/data-table";
 import DataTableLoading from "@/components/ui/data-table/loading";
 import { columns } from "@/app/problems/components/data-table/columns";
 import { useFetchProblems } from "@/hooks";
+import { Problem } from "@/types";
 
 const ProblemsPage = () => {
   const { data, isLoading, isError } = useFetchProblems();
@@ -24,7 +25,7 @@ const ProblemsPage = () => {
   return (
     <section>
       <h1 className="text-3xl">All Problems</h1>
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={data as Problem[]} />
     </section>
   );
 };
