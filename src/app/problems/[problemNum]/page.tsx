@@ -65,11 +65,11 @@ const ProblemPage = ({ params }: problemPageProps) => {
   } = useFetchProblemSubmission(params.problemNum);
 
   if (
-    (problemNumIsLoading || !problemNumData || problemNumData.data === undefined) ||
-    (submissionCountIsLoading || !submissionCountData) ||
-    (submissionLangIsLoading || !submissionLangData) ||
-    (problemRanklistIsLoading || !problemRanklistData) ||
-    (problemSubmissionIsLoading || !problemSubmissionData)
+    problemNumIsLoading ||
+    submissionCountIsLoading ||
+    submissionLangIsLoading ||
+    problemRanklistIsLoading ||
+    problemSubmissionIsLoading
   ) {
     return <Loading />;
   }
@@ -101,16 +101,16 @@ const ProblemPage = ({ params }: problemPageProps) => {
     // console.log(problemNumData);
   }
 
-  const processedProblemVerdictData = processProblemNumBarChartData( problemNumData.data);
+  const processedProblemVerdictData = processProblemNumBarChartData(problemNumData);
 
   return (
     <section>
       <Link
-        href={uhuntViewProblemUrl(problemNumData.data.pid)}
+        href={uhuntViewProblemUrl(problemNumData.pid)}
         className="text-3xl hover:underline"
         target="_blank"
       >
-        {params.problemNum}: {problemNumData.data.title}
+        {params.problemNum}: {problemNumData.title}
       </Link>
       <div className="grid lg:grid-cols-2 gap-4 mb-4 mt-4">
         {/* Submission verdicts bar chart  */}
