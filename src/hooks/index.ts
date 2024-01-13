@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
-import { Problem, Submission } from "@/types";
+import { Problem, Submission, UserSubmission } from "@/types";
 
 /**
  * Enum for React Query Keys when using React-query
@@ -32,6 +32,11 @@ export enum queryKey {
    * React query key for fetching submission by language
    */
   submissionLang = "submission-language",
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  /**
+   * React query key for fetching user submissions
+   */
+  userSubmissions = "user-submissions",
 }
 
 /**
@@ -131,3 +136,20 @@ export const useFetchProblemSubmission = (problemNum: number) => {
     refetchOnWindowFocus: false,
   });
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Fetch user submissions
+ */
+export const useFetchUserSubmissions = (username: string) => {
+  return useQuery({
+    queryKey: [queryKey.userSubmissions],
+    queryFn: async () =>
+      await axios
+        .get<UserSubmission>(`/api/users/${username}/submissions`)
+        .then((res) => res.data),
+    refetchOnWindowFocus: false,
+  });
+};
+
