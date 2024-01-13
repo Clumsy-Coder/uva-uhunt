@@ -43,6 +43,10 @@ export interface ProblemVerdictType {
    * Usually used for displaying verdict using shadcn-ui `Badge` component
    */
   fgHex: string;
+  /**
+   * Verdict shorthand string
+   */
+  verdictShort: string;
 }
 
 const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
@@ -55,6 +59,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
     bgHex: "#00AA00",
     fgHex: "",
+    verdictShort: "ac"
   },
   /**
    * Number of Presentation Error
@@ -65,6 +70,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
     bgHex: "#666600",
     fgHex: "",
+    verdictShort: "pe"
   },
   /**
    * Number of Wrong Answer
@@ -75,6 +81,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
     bgHex: "#FF0000",
     fgHex: "",
+    verdictShort: "wa"
   },
   /**
    * Number of Time Limit Exceeded
@@ -85,6 +92,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
     bgHex: "#0000FF",
     fgHex: "",
+    verdictShort: "tle"
   },
   /**
    * Number of Memory Limit Exceeded
@@ -95,6 +103,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
     bgHex: "#0000AA",
     fgHex: "",
+    verdictShort: "mle"
   },
   /**
    * Number of Compilation Error
@@ -105,6 +114,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
     bgHex: "#EA5A0C",
     fgHex: "",
+    verdictShort: "ce"
   },
   /**
    * Number of Runtime Error
@@ -115,6 +125,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
     bgHex: "#00AAAA",
     fgHex: "",
+    verdictShort: "re"
   },
   /**
    * Number of Output Limit Exceeded
@@ -125,6 +136,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
     bgHex: "#000066",
     fgHex: "",
+    verdictShort: "ole"
   },
   /**
    * Number of Submission Error
@@ -135,6 +147,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
     bgHex: "6b7280",
     fgHex: "",
+    verdictShort: "sube"
   },
   /**
    * Number of Can't be Judged
@@ -145,6 +158,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
     bgHex: "6b7280",
     fgHex: "",
+    verdictShort: "noj"
   },
   /**
    * Number of In Queue
@@ -155,6 +169,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
     bgHex: "6b7280",
     fgHex: "",
+    verdictShort: "inq"
   },
   /**
    * Number of Restricted Function
@@ -165,6 +180,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
     bgHex: "6b7280",
     fgHex: "",
+    verdictShort: "rf"
   }
 }
 // adding keys from `Submission.ver` into object `ProblemVerdictMap`
