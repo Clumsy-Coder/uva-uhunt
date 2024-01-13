@@ -32,3 +32,12 @@ export const problemNumSubmissionSchema = z.object({
     .number({ invalid_type_error: "Problem number must be a number" })
     .min(1, "Problem number must be a number greater than 0"),
 })
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Schema validation for endpoint `/api/users/[username]/submissions`
+ */
+export const userSchema = z.object({
+  username: z.coerce.string().min(1, "Username must have at least on character")
+})
