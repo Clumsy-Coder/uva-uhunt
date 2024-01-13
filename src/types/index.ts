@@ -372,3 +372,36 @@ export type Submission = {
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Submissions array returned when fetching user submissions
+ */
+export type UserSub = {
+  sid: number;
+  pid: number;
+  pnum: number;
+  pTitle: string;
+  ver: number;
+  verdict: ProblemVerdictType,
+  run: number;
+  sbt: number
+  lan: string;
+  rank: number
+}
+
+// user submissions
+
+export type UserSubmission = {
+  /**
+   * name of the user
+   */
+  name: string;
+  /**
+   * username of the user
+   */
+  uname: string;
+  /**
+   * User submissions
+   */
+  subs: UserSub[]
+}
