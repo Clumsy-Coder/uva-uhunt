@@ -7,11 +7,11 @@ import {
   XAxis,
 } from "recharts";
 
-import { getResponseType as SubmissionOvertimeType } from "@/app/api/submissions/overtime/[problemNum]/route";
 import ChartTooltip from "@/components/charts/Tooltip";
+import { SubmissionsOvertimeLineChartType } from "@/types";
 
 type Props = {
-  data: SubmissionOvertimeType[];
+  data: SubmissionsOvertimeLineChartType[];
 };
 
 const SubmissionsOvertimeChart = ({ data }: Props) => {
