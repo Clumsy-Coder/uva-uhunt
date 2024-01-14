@@ -9,17 +9,20 @@ import { userSchema } from "@/schema";
 import SubmissionVerdictChart from "@/components/charts/ProblemVerdictChart";
 import {
   useFetchUserSubmissionLanguage,
+  useFetchUserSubmissionOvertime,
   useFetchUserSubmissions,
   useFetchUserSubmissionVerdict,
 } from "@/hooks";
 import {
   SubmissionLangType,
+  SubmissionsOvertimeLineChartType,
   UserSubmission,
   UserSubmissionBarChartType,
 } from "@/types";
 import { DataTable } from "@/components/ui/data-table";
 import { columns } from "@/app/users/[username]/components/data-table/submissionColumns";
 import SubmissionLanguageRadarChart from "@/components/charts/SubmissionLanguageRadarChart";
+import SubmissionsOvertimeChart from "@/components/charts/SubmissionsOvertimeChart";
 
 type Props = {
   params: z.infer<typeof userSchema>;
@@ -47,11 +50,20 @@ const UserPage = ({ params }: Props) => {
     data:      userSubmissionLanguageData,
     error:     userSubmissionLanguageError,
   } = useFetchUserSubmissionLanguage(params.username);
+  const {
+    isLoading: userSubmissionOvertimeIsLoading,
+    isSuccess: userSubmissionOvertimeIsSuccess,
+    isError:   userSubmissionOvertimeIsError,
+    data:      userSubmissionOvertimeData,
+    error:     userSubmissionOvertimeError,
+  } = useFetchUserSubmissionOvertime(params.username);
+
 
   if (
     userSubmissionIsLoading ||
     userSubmissionVerdictIsLoading ||
-    userSubmissionLanguageIsLoading
+    userSubmissionLanguageIsLoading ||
+    userSubmissionOvertimeIsLoading
   ) {
     return <div>Loading {params.username}</div>;
   }
@@ -92,6 +104,19 @@ const UserPage = ({ params }: Props) => {
             <CardContent className="h-[400px]">
               <SubmissionVerdictChart
                 data={userSubmissionVerdictData as UserSubmissionBarChartType[]}
+              />
+            </CardContent>
+          </Card>
+        </div>
+        {/* Submissions overtime line chart */}
+        <div className="w-full">
+          <Card>
+            <CardHeader>
+              <CardTitle>Submissions overtime</CardTitle>
+            </CardHeader>
+            <CardContent className="h-[400px]">
+              <SubmissionsOvertimeChart
+                data={ userSubmissionOvertimeData as SubmissionsOvertimeLineChartType[] }
               />
             </CardContent>
           </Card>
