@@ -7,7 +7,10 @@ import Error from "@/components/error";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { userSchema } from "@/schema";
 import SubmissionVerdictChart from "@/components/charts/ProblemVerdictChart";
-import { useFetchUserSubmissions, useFetchUserSubmissionVerdict } from "@/hooks";
+import {
+  useFetchUserSubmissions,
+  useFetchUserSubmissionVerdict,
+} from "@/hooks";
 import { UserSubmission, UserSubmissionBarChartType } from "@/types";
 import { DataTable } from "@/components/ui/data-table";
 import { columns } from "@/app/users/[username]/components/data-table/submissionColumns";
@@ -32,18 +35,17 @@ const UserPage = ({ params }: Props) => {
     error:     userSubmissionVerdictError,
   } = useFetchUserSubmissionVerdict(params.username);
 
-
   if (userSubmissionIsLoading || userSubmissionVerdictIsLoading) {
     return <div>Loading {params.username}</div>;
   }
 
-  if(userSubmissionIsError) {
+  if (userSubmissionIsError) {
     type ErrorMessage = {
       message: string;
-    }
+    };
 
-    const status = (userSubmissionError as AxiosError<ErrorMessage>).response?.status
-    const message = (userSubmissionError as AxiosError<ErrorMessage>).response?.data.message
+    const status = (userSubmissionError as AxiosError<ErrorMessage>).response?.status;
+    const message = (userSubmissionError as AxiosError<ErrorMessage>).response?.data.message;
 
     return (
       <Error
@@ -60,7 +62,9 @@ const UserPage = ({ params }: Props) => {
   return (
     <section>
       <div>
-        <h1 className="text-3xl">{userSubmissionData?.name} ({params.username})</h1>
+        <h1 className="text-3xl">
+          {userSubmissionData?.name} ({params.username})
+        </h1>
       </div>
       <div className="grid lg:grid-cols-2 gap-4 mb-4 mt-4">
         <div className="w-full">
@@ -69,7 +73,9 @@ const UserPage = ({ params }: Props) => {
               <CardTitle>Submission Verdicts</CardTitle>
             </CardHeader>
             <CardContent className="h-[400px]">
-              <SubmissionVerdictChart data={userSubmissionVerdictData as UserSubmissionBarChartType[]} />
+              <SubmissionVerdictChart
+                data={userSubmissionVerdictData as UserSubmissionBarChartType[]}
+              />
             </CardContent>
           </Card>
         </div>
@@ -78,12 +84,16 @@ const UserPage = ({ params }: Props) => {
         <div>
           <div>
             <h1 className="text-3xl mb-4 mt-6">Submissions</h1>
-            <DataTable columns={columns} data={( userSubmissionData as UserSubmission ).subs} height={400} />
+            <DataTable
+              columns={columns}
+              data={(userSubmissionData as UserSubmission).subs}
+              height={400}
+            />
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 };
 
 export default UserPage;
