@@ -8,12 +8,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { userSchema } from "@/schema";
 import SubmissionVerdictChart from "@/components/charts/ProblemVerdictChart";
 import {
+  useFetchUserSubmissionLanguage,
   useFetchUserSubmissions,
   useFetchUserSubmissionVerdict,
 } from "@/hooks";
-import { UserSubmission, UserSubmissionBarChartType } from "@/types";
+import {
+  SubmissionLangType,
+  UserSubmission,
+  UserSubmissionBarChartType,
+} from "@/types";
 import { DataTable } from "@/components/ui/data-table";
 import { columns } from "@/app/users/[username]/components/data-table/submissionColumns";
+import SubmissionLanguageRadarChart from "@/components/charts/SubmissionLanguageRadarChart";
 
 type Props = {
   params: z.infer<typeof userSchema>;
@@ -34,8 +40,19 @@ const UserPage = ({ params }: Props) => {
     data:      userSubmissionVerdictData,
     error:     userSubmissionVerdictError,
   } = useFetchUserSubmissionVerdict(params.username);
+  const {
+    isLoading: userSubmissionLanguageIsLoading,
+    isSuccess: userSubmissionLanguageIsSuccess,
+    isError:   userSubmissionLanguageIsError,
+    data:      userSubmissionLanguageData,
+    error:     userSubmissionLanguageError,
+  } = useFetchUserSubmissionLanguage(params.username);
 
-  if (userSubmissionIsLoading || userSubmissionVerdictIsLoading) {
+  if (
+    userSubmissionIsLoading ||
+    userSubmissionVerdictIsLoading ||
+    userSubmissionLanguageIsLoading
+  ) {
     return <div>Loading {params.username}</div>;
   }
 
@@ -75,6 +92,19 @@ const UserPage = ({ params }: Props) => {
             <CardContent className="h-[400px]">
               <SubmissionVerdictChart
                 data={userSubmissionVerdictData as UserSubmissionBarChartType[]}
+              />
+            </CardContent>
+          </Card>
+        </div>
+        {/* Submissions language using radar chart */}
+        <div className="w-full">
+          <Card>
+            <CardHeader>
+              <CardTitle>Submissions by language</CardTitle>
+            </CardHeader>
+            <CardContent className="h-[400px]">
+              <SubmissionLanguageRadarChart
+                data={userSubmissionLanguageData as SubmissionLangType[]}
               />
             </CardContent>
           </Card>
