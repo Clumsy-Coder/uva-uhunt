@@ -465,3 +465,32 @@ export type SubmissionLangType = {
   count: number;
 };
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Data type used by Rechart bar chart.
+ * Specifically used for `Problem verdict bar chart` and `Submission verdict bar chart`
+ *
+ * This is used to display submissions by verdict
+ */
+export type VerdictBarChartType = {
+  /**
+   * Name of the bar in the bar chart.
+   * usually the verdict acronyms
+   */
+  name: string;
+  /**
+   * The value of the verdict
+   */
+  verdict: number;
+  /**
+   * Tooltip title to display.
+   * Usually would be the full string of a verdict
+   */
+  tooltipTitle: string;
+  /**
+   * Color for bar
+   */
+  fill: string;
+};
+

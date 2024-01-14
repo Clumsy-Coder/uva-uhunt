@@ -13,11 +13,11 @@ import {
   XAxis,
 } from "recharts";
 
-import { processedProblemVerdictBarChartType } from "@/utils/dataProcessing";
+import { VerdictBarChartType } from "@/types";
 import ChartTooltip from "@/components/charts/Tooltip";
 
 type Props = {
-  data: processedProblemVerdictBarChartType[];
+  data: VerdictBarChartType[];
 };
 
 const ProblemVerdictChart = ({ data }: Props) => {
