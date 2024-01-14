@@ -421,3 +421,28 @@ export type UserSubmission = {
    */
   subs: UserSub[]
 }
+
+/**
+ * Data structure for display user submissions using Rechart bar chart
+ * Used in api endpoint `/api/users/[username]/submissions/verdict`
+ */
+export type UserSubmissionBarChartType = {
+  /**
+   * Name of the bar in the bar chart.
+   * usually the verdict acronyms
+   */
+  name: string;
+  /**
+   * The value of the verdict
+   */
+  verdict: number;
+  /**
+   * Tooltip title to display.
+   * Usually would be the full string of a verdict
+   */
+  tooltipTitle: string;
+  /**
+   * Color for bar
+   */
+  fill: string;
+};
