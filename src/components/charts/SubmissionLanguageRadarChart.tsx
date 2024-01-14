@@ -9,20 +9,18 @@ import {
 import { useTheme } from "next-themes";
 
 import ChartTooltip from "@/components/charts/Tooltip";
-import { processSubmissionLanguageRadarChart } from "@/utils/dataProcessing";
-import { getResponseType } from "@/app/api/submissions/language/[problemNum]/route";
+import { SubmissionLangType } from "@/types";
 
 type Props = {
-  data: getResponseType;
+  data: SubmissionLangType[];
 };
 
 const SubmissionLanguageRadarChart = ({ data }: Props) => {
   const { theme } = useTheme();
-  const processedData = processSubmissionLanguageRadarChart(data);
 
   return (
     <ResponsiveContainer>
-      <RadarChart data={processedData} cx="50%" cy="50%" outerRadius="90%">
+      <RadarChart data={data} cx="50%" cy="50%" outerRadius="90%">
         <PolarGrid opacity={theme === "dark" ? 0.3 : 1.0} />
         <PolarAngleAxis dataKey="language" />
         <Tooltip
