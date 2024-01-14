@@ -22,7 +22,7 @@ import { columns } from "./components/data-table/ranklistColumns";
 import Loading from "./loading";
 import Link from "next/link";
 import { uhuntViewProblemUrl } from "@/utils/constants";
-import { Problem, Submission } from "@/types";
+import { Problem, Submission, SubmissionLangType } from "@/types";
 
 type problemPageProps = {
   params: z.infer<typeof problemNumSchema>;
@@ -141,7 +141,7 @@ const ProblemPage = ({ params }: problemPageProps) => {
               <CardTitle>Submissions by language</CardTitle>
             </CardHeader>
             <CardContent className="h-[400px]">
-              <SubmissionLanguageRadarChart data={submissionLangData} />
+              <SubmissionLanguageRadarChart data={submissionLangData as SubmissionLangType[]} />
             </CardContent>
           </Card>
         </div>
