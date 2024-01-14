@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
-import { Problem, Submission, SubmissionLangType, UserSubmission, UserSubmissionBarChartType } from "@/types";
+import { Problem, Submission, SubmissionLangType, SubmissionsOvertimeLineChartType, UserSubmission, UserSubmissionBarChartType } from "@/types";
 
 /**
  * Enum for React Query Keys when using React-query
@@ -45,6 +45,10 @@ export enum queryKey {
    * React-query key for fetching user submissions language
    */
   userSubmissionLanguage = "user-submissions-language",
+  /**
+   * React-query key for fetching user submissions overtime
+   */
+  userSubmissionOvertime = "user-submissions-overtime",
 }
 
 /**
@@ -190,3 +194,19 @@ export const useFetchUserSubmissionLanguage = (username: string) => {
     refetchOnWindowFocus: false,
   });
 };
+
+/**
+ * Fetch user submissions by language
+ * Used for displaying data using Rechart radar chart
+ */
+export const useFetchUserSubmissionOvertime = (username: string) => {
+  return useQuery({
+    queryKey: [queryKey.userSubmissionOvertime],
+    queryFn: async () =>
+      await axios
+        .get<SubmissionsOvertimeLineChartType[]>(`/api/users/${username}/submissions/overtime`)
+        .then((res) => res.data),
+    refetchOnWindowFocus: false,
+  });
+};
+
