@@ -446,3 +446,22 @@ export type UserSubmissionBarChartType = {
    */
   fill: string;
 };
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Data type used by Rechart radar chart.
+ *
+ * This is used to display submissions by language
+ */
+export type SubmissionLangType = {
+  /**
+   * Programmign language used for the submission
+   */
+  language: string;
+  /**
+   * The sum of submissions using this language
+   */
+  count: number;
+};
+
