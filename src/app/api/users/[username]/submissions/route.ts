@@ -3,17 +3,12 @@ import { z } from "zod";
 
 import { userSchema as schema } from "@/schema";
 import {
+  uhuntAllProblemsUrl,
   uhuntUserSubmissionsUrl,
   uhuntUsername2UidUrl,
 } from "@/utils/constants";
-import {
-  Language,
-  Problem,
-  ProblemVerdictMap,
-  UserSub,
-  UserSubmission,
-} from "@/types";
-import { RawUserSubmission } from "@/types/raw";
+import { Language, ProblemVerdictMap, UserSub, UserSubmission } from "@/types";
+import { RawProblem, RawUserSubmission } from "@/types/raw";
 
 type getParamsType = {
   params: z.infer<typeof schema>;
@@ -56,9 +51,9 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
   // fetch all problems
   // this is needed because later each submission will need problem number and problem title.
   //    if repeatedly fetching from upstream api server, it will slow down.
-  const allProblemsUrl = `http://localhost:${process.env.PORT}/api/problems`;
+  const allProblemsUrl = uhuntAllProblemsUrl();
   const allProblemsResponse = await fetch(allProblemsUrl);
-  const allProblemsData: Problem[] = await allProblemsResponse.json();
+  const allProblemsData: RawProblem[] = await allProblemsResponse.json();
 
   // fetch submissions of the user
   const userSubmissionsUrl = uhuntUserSubmissionsUrl(usernameData);
@@ -66,7 +61,7 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
     cache: "no-cache",
   });
   const userSubmissionData =
-    (await userSubmissionResponse.json()) as RawUserSubmission
+    (await userSubmissionResponse.json()) as RawUserSubmission;
 
   // change userSubmissionData.sub[] into UserSub[]
   // originally the upstream api would return `userSubmissionData.sub` as an array of array
@@ -96,11 +91,11 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
       converted.rank = submission[6];
 
       const problemData = allProblemsData.find(
-        (problem) => problem.pid === converted.pid,
+        (problem) => problem[0] === converted.pid,
       );
 
-      converted.pnum = (problemData as Problem).num;
-      converted.pTitle = (problemData as Problem).title;
+      converted.pnum = (problemData as RawProblem)[1];
+      converted.pTitle = (problemData as RawProblem)[2];
       converted.verdict = ProblemVerdictMap[converted.ver as number] || {
         fgColor: "text-primary-foreground dark:text-secondary-foreground",
         bgColor: "bg-gray-500",
@@ -116,8 +111,8 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
   const resultData: UserSubmission = {
     name: userSubmissionData.name,
     uname: userSubmissionData.uname,
-    subs: converted as UserSub[]
-  }
+    subs: converted as UserSub[],
+  };
 
   return Response.json(resultData);
 };
