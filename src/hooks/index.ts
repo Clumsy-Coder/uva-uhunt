@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
-import { Problem, Submission, UserSubmission } from "@/types";
+import { Problem, Submission, UserSubmission, UserSubmissionBarChartType } from "@/types";
 
 /**
  * Enum for React Query Keys when using React-query
@@ -37,6 +37,10 @@ export enum queryKey {
    * React query key for fetching user submissions
    */
   userSubmissions = "user-submissions",
+  /**
+   * React-query key for fetching user submissions verdict
+   */
+  userSubmissionVerdict = "user-submissions-verdict",
 }
 
 /**
@@ -152,4 +156,20 @@ export const useFetchUserSubmissions = (username: string) => {
     refetchOnWindowFocus: false,
   });
 };
+
+/**
+ * Fetch user submissions verdicts
+ * Used for displaying data using Rechart bar chart
+ */
+export const useFetchUserSubmissionVerdict = (username: string) => {
+  return useQuery({
+    queryKey: [queryKey.userSubmissionVerdict],
+    queryFn: async () =>
+      await axios
+        .get<UserSubmissionBarChartType[]>(`/api/users/${username}/submissions/verdict`)
+        .then((res) => res.data),
+    refetchOnWindowFocus: false,
+  });
+};
+
 
