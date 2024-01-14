@@ -3,19 +3,12 @@ import { z } from "zod";
 import { submissionOvertimeSchema as schema } from "@/schema";
 import { NextResponse } from "next/server";
 import { uhuntProblemNumUrl, uhuntSubmissionCountUrl } from "@/utils/constants";
-import { Problem } from "@/types";
+import { Problem, SubmissionsOvertimeLineChartType } from "@/types";
 import moment, { Moment } from "moment";
 
 type getParamsType = {
   params: z.infer<typeof schema>;
 };
-
-export type getResponseType = {
-  name: string;
-  time: string; // time formatted to year
-  submissions: number;
-  fill: string;
-}
 
 /**
  * Get the submission count of a problem using `problem number`
@@ -75,7 +68,7 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
   //     12 : Number of months each array element will represent
   const submissionUrlSplit = submssionCountUrl.split("/");
   const thirtyDaysInSeconds = 60 * 60 * 24 * 30;
-  const responseData:getResponseType[] = data.map((cur, i) => {
+  const responseData:SubmissionsOvertimeLineChartType[] = data.map((cur, i) => {
     const submissionTime = +submissionUrlSplit[7];
     const back = +submissionUrlSplit[8];
     const jump = +submissionUrlSplit[9];
