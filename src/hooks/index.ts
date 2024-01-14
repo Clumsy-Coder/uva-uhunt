@@ -1,7 +1,14 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
-import { Problem, Submission, SubmissionLangType, SubmissionsOvertimeLineChartType, UserSubmission, UserSubmissionBarChartType } from "@/types";
+import {
+  Problem,
+  Submission,
+  SubmissionLangType,
+  SubmissionsOvertimeLineChartType,
+  UserSubmission,
+  UserSubmissionBarChartType,
+} from "@/types";
 
 /**
  * Enum for React Query Keys when using React-query
@@ -76,7 +83,8 @@ export const useFetchLiveSubmission = (pollId = 0, fetchInterval = 5000) => {
 export const useFetchProblems = () => {
   return useQuery({
     queryKey: [queryKey.allProblems],
-    queryFn: async () => axios.get<Problem[]>("/api/problems").then((res) => res.data),
+    queryFn: async () =>
+      axios.get<Problem[]>("/api/problems").then((res) => res.data),
     refetchOnWindowFocus: false,
   });
 };
@@ -88,7 +96,9 @@ export const useFetchProblemNum = (problemNum: number) => {
   return useQuery({
     queryKey: [queryKey.problemNum],
     queryFn: async () =>
-      await axios.get<Problem>(`/api/problems/${problemNum}`).then((res) => res.data),
+      await axios
+        .get<Problem>(`/api/problems/${problemNum}`)
+        .then((res) => res.data),
     refetchOnWindowFocus: false,
   });
 };
@@ -129,7 +139,7 @@ export const useFetchProblemRanklist = (problemNum: number) => {
     queryKey: [queryKey.problemRanklist],
     queryFn: async () =>
       await axios
-        .get<Submission['msg'][]>(`/api/problems/ranklist/${problemNum}`)
+        .get<Submission["msg"][]>(`/api/problems/ranklist/${problemNum}`)
         .then((res) => res.data),
     refetchOnWindowFocus: false,
   });
@@ -143,7 +153,7 @@ export const useFetchProblemSubmission = (problemNum: number) => {
     queryKey: [queryKey.problemSubmission],
     queryFn: async () =>
       await axios
-        .get<Submission['msg'][]>(`/api/submissions/${problemNum}`)
+        .get<Submission["msg"][]>(`/api/submissions/${problemNum}`)
         .then((res) => res.data),
     refetchOnWindowFocus: false,
   });
@@ -174,7 +184,9 @@ export const useFetchUserSubmissionVerdict = (username: string) => {
     queryKey: [queryKey.userSubmissionVerdict],
     queryFn: async () =>
       await axios
-        .get<UserSubmissionBarChartType[]>(`/api/users/${username}/submissions/verdict`)
+        .get<UserSubmissionBarChartType[]>(
+          `/api/users/${username}/submissions/verdict`,
+        )
         .then((res) => res.data),
     refetchOnWindowFocus: false,
   });
@@ -189,7 +201,9 @@ export const useFetchUserSubmissionLanguage = (username: string) => {
     queryKey: [queryKey.userSubmissionLanguage],
     queryFn: async () =>
       await axios
-        .get<SubmissionLangType[]>(`/api/users/${username}/submissions/language`)
+        .get<SubmissionLangType[]>(
+          `/api/users/${username}/submissions/language`,
+        )
         .then((res) => res.data),
     refetchOnWindowFocus: false,
   });
@@ -204,9 +218,10 @@ export const useFetchUserSubmissionOvertime = (username: string) => {
     queryKey: [queryKey.userSubmissionOvertime],
     queryFn: async () =>
       await axios
-        .get<SubmissionsOvertimeLineChartType[]>(`/api/users/${username}/submissions/overtime`)
+        .get<SubmissionsOvertimeLineChartType[]>(
+          `/api/users/${username}/submissions/overtime`,
+        )
         .then((res) => res.data),
     refetchOnWindowFocus: false,
   });
 };
-
