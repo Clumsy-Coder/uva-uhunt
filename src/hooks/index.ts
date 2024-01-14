@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
-import { Problem, Submission, UserSubmission, UserSubmissionBarChartType } from "@/types";
+import { Problem, Submission, SubmissionLangType, UserSubmission, UserSubmissionBarChartType } from "@/types";
 
 /**
  * Enum for React Query Keys when using React-query
@@ -107,7 +107,7 @@ export const useFetchSubmissionLang = (problemNum: number) => {
     queryKey: [queryKey.submissionLang],
     queryFn: async () =>
       await axios
-        .get(`/api/submissions/language/${problemNum}`)
+        .get<SubmissionLangType[]>(`/api/submissions/language/${problemNum}`)
         .then((res) => res.data),
     refetchOnWindowFocus: false,
   });
