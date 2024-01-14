@@ -13,6 +13,7 @@ import {
   UserSub,
   UserSubmission,
 } from "@/types";
+import { RawUserSubmission } from "@/types/raw";
 
 type getParamsType = {
   params: z.infer<typeof schema>;
@@ -65,7 +66,7 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
     cache: "no-cache",
   });
   const userSubmissionData =
-    (await userSubmissionResponse.json()) as UserSubmission;
+    (await userSubmissionResponse.json()) as RawUserSubmission
 
   // change userSubmissionData.sub[] into UserSub[]
   // originally the upstream api would return `userSubmissionData.sub` as an array of array
@@ -81,7 +82,7 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
   //     6: -1            // rank
   //   ]
   // ]
-  const converted = (userSubmissionData.subs as unknown as number[][])
+  const converted = userSubmissionData.subs
     .sort((a, b) => b[4] - a[4]) // sort by submission time in descending order
     .slice(0, 500) // take only the most recent 500 submissions
     .map((submission: number[]) => {
@@ -112,7 +113,11 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
       return converted;
     });
 
-  userSubmissionData.subs = converted as unknown as UserSub[];
+  const resultData: UserSubmission = {
+    name: userSubmissionData.name,
+    uname: userSubmissionData.uname,
+    subs: converted as UserSub[]
+  }
 
-  return Response.json(userSubmissionData);
+  return Response.json(resultData);
 };
