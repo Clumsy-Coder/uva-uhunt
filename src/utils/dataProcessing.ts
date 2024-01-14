@@ -1,27 +1,8 @@
 import { Language, Problem, ProblemVerdictMap, ProblemVerdictType } from "@/types";
 import {getResponseType as submissionLangType} from '@/app/api/submissions/language/[problemNum]/route'
 import { SubmissionLangType } from "@/types";
+import { VerdictBarChartType } from "@/types";
 
-export type processedProblemVerdictBarChartType = {
-  /**
-   * Name of the bar in the bar chart.
-   * usually the verdict acronyms
-   */
-  name: string;
-  /**
-   * The value of the verdict
-   */
-  verdict: number;
-  /**
-   * Tooltip title to display.
-   * Usually would be the full string of a verdict
-   */
-  tooltipTitle: string;
-  /**
-   * Color for bar
-   */
-  fill: string;
-};
 export const processProblemNumBarChartData = (data: Problem) => {
   // filter out the ProblemVerdictMap object and keep keys from `filter` array
   const filter = ["ac", "pe", "wa", "tle", "mle", "ce", "re", "ole"]
@@ -33,7 +14,7 @@ export const processProblemNumBarChartData = (data: Problem) => {
   // obtained from https://stackoverflow.com/a/69676994/3053548
   const filteredVerdicts: Record<string, ProblemVerdictType> = Object.fromEntries(filter.map(k => [k, ProblemVerdictMap[k]]))
 
-  const processedData:processedProblemVerdictBarChartType[] = []
+  const processedData:VerdictBarChartType[] = []
 
   for(const [key, value] of Object.entries(filteredVerdicts)) {
     processedData.push({
