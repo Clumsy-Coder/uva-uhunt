@@ -41,6 +41,10 @@ export enum queryKey {
    * React-query key for fetching user submissions verdict
    */
   userSubmissionVerdict = "user-submissions-verdict",
+  /**
+   * React-query key for fetching user submissions language
+   */
+  userSubmissionLanguage = "user-submissions-language",
 }
 
 /**
@@ -172,4 +176,17 @@ export const useFetchUserSubmissionVerdict = (username: string) => {
   });
 };
 
-
+/**
+ * Fetch user submissions by language
+ * Used for displaying data using Rechart radar chart
+ */
+export const useFetchUserSubmissionLanguage = (username: string) => {
+  return useQuery({
+    queryKey: [queryKey.userSubmissionLanguage],
+    queryFn: async () =>
+      await axios
+        .get<SubmissionLangType[]>(`/api/users/${username}/submissions/language`)
+        .then((res) => res.data),
+    refetchOnWindowFocus: false,
+  });
+};
