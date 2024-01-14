@@ -145,7 +145,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     title: "Submission Error",
     bgColor: "bg-gray-500",
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
-    bgHex: "6b7280",
+    bgHex: "#6b7280",
     fgHex: "",
     verdictShort: "sube"
   },
@@ -156,7 +156,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     title: "Can't be judged",
     bgColor: "bg-gray-500",
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
-    bgHex: "6b7280",
+    bgHex: "#6b7280",
     fgHex: "",
     verdictShort: "noj"
   },
@@ -167,7 +167,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     title: "- In Queue -",
     bgColor: "bg-gray-500",
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
-    bgHex: "6b7280",
+    bgHex: "#6b7280",
     fgHex: "",
     verdictShort: "inq"
   },
@@ -178,7 +178,7 @@ const ProblemVerdictMap: Record<string, ProblemVerdictType> = {
     title: "Restricted function",
     bgColor: "bg-gray-500",
     fgColor: "text-primary-foreground dark:text-secondary-foreground",
-    bgHex: "6b7280",
+    bgHex: "#6b7280",
     fgHex: "",
     verdictShort: "rf"
   }
@@ -522,3 +522,29 @@ export type SubmissionsOvertimeLineChartType = {
   fill: string;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Data type used by Rechart dounut chart.
+ *
+ * This is used to display submissions solved vs attempted
+ */
+export type SubmissionSovledVsAttempted = {
+  /**
+   * Name of segment
+   */
+  name: string;
+  /**
+   * Value of segment
+   */
+  count: number;
+  /**
+   * Tooltip title to display.
+   * Usually would be the full string of a verdict
+   */
+  tooltipTitle: string;
+  /**
+   * Color used for the chart
+   */
+  fill: string;
+}
