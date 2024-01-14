@@ -6,7 +6,7 @@ import {
   uhuntProblemNumUrl,
   uhuntProblemSubmissionListUrl,
 } from "@/utils/constants";
-import { Language, Problem, Submission } from "@/types";
+import { Language, Problem, Submission, SubmissionLangType } from "@/types";
 
 type getParamsType = {
   params: z.infer<typeof schema>;
@@ -64,13 +64,22 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
   );
 
   // increment count of key-value for their respective language ID
-  const responseData: getResponseType = submissionData.reduce((acc, cur) => {
+  const reducedData: Record<string, number> = submissionData.reduce((acc, cur) => {
     const languageId = cur.lan;
     acc[languageId] = acc[languageId] + 1;
 
     return acc;
   }, languageObj);
-  delete responseData["undefined"];
+  delete reducedData["undefined"];
 
-  return Response.json(responseData);
+  const processedData: SubmissionLangType[] = Object.entries(reducedData).map(
+    ([key, value]) => {
+      return {
+        language: Language[key],
+        count: value,
+      };
+    },
+  );
+
+  return Response.json(processedData);
 };
