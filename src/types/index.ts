@@ -494,3 +494,31 @@ export type VerdictBarChartType = {
   fill: string;
 };
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Data type used by Rechart area chart.
+ *
+ * Specifically used for `Problem submissions overtime` and `User submissions overtime`
+ *
+ * This is used to display submissions overtime
+ */
+export type SubmissionsOvertimeLineChartType = {
+  /**
+   * name of the entry
+   */
+  name: string;
+  /**
+   * Submission year. Denoted as YYYY
+   */
+  time: string; // time formatted to year
+  /**
+   * Submission count for the year
+   */
+  submissions: number;
+  /**
+   * Color used for the chart
+   */
+  fill: string;
+}
+
