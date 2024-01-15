@@ -91,6 +91,7 @@ export const useFetchProblems = () => {
     queryFn: async () =>
       axios.get<Problem[]>("/api/problems").then((res) => res.data),
     refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 };
 
