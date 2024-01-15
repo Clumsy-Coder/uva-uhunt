@@ -69,6 +69,13 @@ export const GET = async (_request: Request, { params }: getParamsType) => {
     return obj;
   }, initData);
 
+  // add current year if it doesn't exist
+  // this to make sure the chart draws a lint upto the current year
+  const curYear = new Date().getFullYear()
+  if(reducedData[curYear] === undefined) {
+    reducedData[curYear] = 0
+  }
+
   // add missing years
   // - loop through the array starting from index 1 going upto last array element
   //   - convert processedData into an array using Object.entries
