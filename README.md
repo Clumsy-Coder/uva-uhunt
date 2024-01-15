@@ -55,4 +55,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ![Problems num page 2](docs/images/page-problems-num.png)
 
+### Username page (`/users/[username]`)
+![Username page 1](docs/images/page-users-username-loading.png)
+
+![Username page 2](docs/images/page-users-username.png)
+
+
 </details>
