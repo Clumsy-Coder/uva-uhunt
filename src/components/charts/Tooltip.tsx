@@ -49,6 +49,7 @@ export const ChartTooltipRow = ({ value, name, color }: ChartTooltipRowProps) =>
           "w-3",
           "rounded-md",
         )}
+        style={{backgroundColor: color}}
       />
       <p
         className={cn(
