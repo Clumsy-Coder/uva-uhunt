@@ -35,38 +35,25 @@ type Props = {
 const UserPage = ({ params }: Props) => {
   const {
     isFetching: userSubmissionIsFetching,
-    isSuccess: userSubmissionIsSuccess,
-    isError: userSubmissionIsError,
-    data: userSubmissionData,
-    error: userSubmissionError,
+    isError:    userSubmissionIsError,
+    data:       userSubmissionData,
+    error:      userSubmissionError,
   } = useFetchUserSubmissions(params.username);
   const {
     isFetching: userSubmissionVerdictIsFetching,
-    isSuccess: userSubmissionVerdictIsSuccess,
-    isError:   userSubmissionVerdictIsError,
-    data:      userSubmissionVerdictData,
-    error:     userSubmissionVerdictError,
+    data:       userSubmissionVerdictData,
   } = useFetchUserSubmissionVerdict(params.username);
   const {
     isFetching: userSubmissionLanguageIsFetching,
-    isSuccess: userSubmissionLanguageIsSuccess,
-    isError:   userSubmissionLanguageIsError,
-    data:      userSubmissionLanguageData,
-    error:     userSubmissionLanguageError,
+    data:       userSubmissionLanguageData,
   } = useFetchUserSubmissionLanguage(params.username);
   const {
     isFetching: userSubmissionOvertimeIsFetching,
-    isSuccess: userSubmissionOvertimeIsSuccess,
-    isError:   userSubmissionOvertimeIsError,
-    data:      userSubmissionOvertimeData,
-    error:     userSubmissionOvertimeError,
+    data:       userSubmissionOvertimeData,
   } = useFetchUserSubmissionOvertime(params.username);
   const {
     isFetching: userSubmissionAttemptedIsFetching,
-    isSuccess: userSubmissionAttemptedIsSuccess,
-    isError:   userSubmissionAttemptedIsError,
-    data:      userSubmissionAttemptedData,
-    error:     userSubmissionAttemptedError,
+    data:       userSubmissionAttemptedData,
   } = useFetchUserSubmissionAttempted(params.username);
 
   if (
@@ -76,7 +63,7 @@ const UserPage = ({ params }: Props) => {
     userSubmissionOvertimeIsFetching ||
     userSubmissionAttemptedIsFetching
   ) {
-    return <Loading />
+    return <Loading />;
   }
 
   if (userSubmissionIsError) {
@@ -94,10 +81,6 @@ const UserPage = ({ params }: Props) => {
       />
     );
   }
-
-  // process data
-  // const userSubmissionVerdicts = processUserSubmissionsVerdictBarChart((userSubmissionData as UserSubmission).subs)
-  // console.log(userSubmissionVerdicts)
 
   return (
     <section>
