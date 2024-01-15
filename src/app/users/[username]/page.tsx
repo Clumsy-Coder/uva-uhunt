@@ -26,6 +26,7 @@ import { columns } from "@/app/users/[username]/components/data-table/submission
 import SubmissionLanguageRadarChart from "@/components/charts/SubmissionLanguageRadarChart";
 import SubmissionsOvertimeChart from "@/components/charts/SubmissionsOvertimeChart";
 import SolvedVsAttemptedDonutChart from "@/components/charts/SolvedVsAttemptedDonutChart";
+import Loading from "./loading";
 
 type Props = {
   params: z.infer<typeof userSchema>;
@@ -75,7 +76,7 @@ const UserPage = ({ params }: Props) => {
     userSubmissionOvertimeIsLoading ||
     userSubmissionAttemptedIsLoading
   ) {
-    return <div>Loading {params.username}</div>;
+    return <Loading />
   }
 
   if (userSubmissionIsError) {
