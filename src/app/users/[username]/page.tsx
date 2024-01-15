@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { userSchema } from "@/schema";
 import SubmissionVerdictChart from "@/components/charts/ProblemVerdictChart";
 import {
+  useFetchUserSubmissionAttempted,
   useFetchUserSubmissionLanguage,
   useFetchUserSubmissionOvertime,
   useFetchUserSubmissions,
@@ -15,6 +16,7 @@ import {
 } from "@/hooks";
 import {
   SubmissionLangType,
+  SubmissionSovledVsAttempted,
   SubmissionsOvertimeLineChartType,
   UserSubmission,
   UserSubmissionBarChartType,
@@ -23,6 +25,7 @@ import { DataTable } from "@/components/ui/data-table";
 import { columns } from "@/app/users/[username]/components/data-table/submissionColumns";
 import SubmissionLanguageRadarChart from "@/components/charts/SubmissionLanguageRadarChart";
 import SubmissionsOvertimeChart from "@/components/charts/SubmissionsOvertimeChart";
+import SolvedVsAttemptedDonutChart from "@/components/charts/SolvedVsAttemptedDonutChart";
 
 type Props = {
   params: z.infer<typeof userSchema>;
@@ -57,13 +60,20 @@ const UserPage = ({ params }: Props) => {
     data:      userSubmissionOvertimeData,
     error:     userSubmissionOvertimeError,
   } = useFetchUserSubmissionOvertime(params.username);
-
+  const {
+    isLoading: userSubmissionAttemptedIsLoading,
+    isSuccess: userSubmissionAttemptedIsSuccess,
+    isError:   userSubmissionAttemptedIsError,
+    data:      userSubmissionAttemptedData,
+    error:     userSubmissionAttemptedError,
+  } = useFetchUserSubmissionAttempted(params.username);
 
   if (
     userSubmissionIsLoading ||
     userSubmissionVerdictIsLoading ||
     userSubmissionLanguageIsLoading ||
-    userSubmissionOvertimeIsLoading
+    userSubmissionOvertimeIsLoading ||
+    userSubmissionAttemptedIsLoading
   ) {
     return <div>Loading {params.username}</div>;
   }
@@ -130,6 +140,19 @@ const UserPage = ({ params }: Props) => {
             <CardContent className="h-[400px]">
               <SubmissionLanguageRadarChart
                 data={userSubmissionLanguageData as SubmissionLangType[]}
+              />
+            </CardContent>
+          </Card>
+        </div>
+        {/* Problem solved vs attempted with donut chart */}
+        <div className="w-full">
+          <Card>
+            <CardHeader>
+              <CardTitle>Solved problems vs Problem submissions</CardTitle>
+            </CardHeader>
+            <CardContent className="h-[400px]">
+              <SolvedVsAttemptedDonutChart
+                data={userSubmissionAttemptedData as SubmissionSovledVsAttempted[]}
               />
             </CardContent>
           </Card>
