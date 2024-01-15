@@ -41,3 +41,13 @@ export const problemNumSubmissionSchema = z.object({
 export const userSchema = z.object({
   username: z.coerce.string().min(1, "Username must have at least on character")
 })
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Schema validation for endpoint `/api/search[searchStr]
+ */
+export const searchSchema = z.object({
+  searchStr: z.coerce.string().min(1, "Search text must have at least on character")
+})
+
