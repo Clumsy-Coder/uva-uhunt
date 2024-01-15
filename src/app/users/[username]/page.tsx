@@ -34,35 +34,35 @@ type Props = {
 
 const UserPage = ({ params }: Props) => {
   const {
-    isLoading: userSubmissionIsLoading,
+    isFetching: userSubmissionIsFetching,
     isSuccess: userSubmissionIsSuccess,
     isError: userSubmissionIsError,
     data: userSubmissionData,
     error: userSubmissionError,
   } = useFetchUserSubmissions(params.username);
   const {
-    isLoading: userSubmissionVerdictIsLoading,
+    isFetching: userSubmissionVerdictIsFetching,
     isSuccess: userSubmissionVerdictIsSuccess,
     isError:   userSubmissionVerdictIsError,
     data:      userSubmissionVerdictData,
     error:     userSubmissionVerdictError,
   } = useFetchUserSubmissionVerdict(params.username);
   const {
-    isLoading: userSubmissionLanguageIsLoading,
+    isFetching: userSubmissionLanguageIsFetching,
     isSuccess: userSubmissionLanguageIsSuccess,
     isError:   userSubmissionLanguageIsError,
     data:      userSubmissionLanguageData,
     error:     userSubmissionLanguageError,
   } = useFetchUserSubmissionLanguage(params.username);
   const {
-    isLoading: userSubmissionOvertimeIsLoading,
+    isFetching: userSubmissionOvertimeIsFetching,
     isSuccess: userSubmissionOvertimeIsSuccess,
     isError:   userSubmissionOvertimeIsError,
     data:      userSubmissionOvertimeData,
     error:     userSubmissionOvertimeError,
   } = useFetchUserSubmissionOvertime(params.username);
   const {
-    isLoading: userSubmissionAttemptedIsLoading,
+    isFetching: userSubmissionAttemptedIsFetching,
     isSuccess: userSubmissionAttemptedIsSuccess,
     isError:   userSubmissionAttemptedIsError,
     data:      userSubmissionAttemptedData,
@@ -70,11 +70,11 @@ const UserPage = ({ params }: Props) => {
   } = useFetchUserSubmissionAttempted(params.username);
 
   if (
-    userSubmissionIsLoading ||
-    userSubmissionVerdictIsLoading ||
-    userSubmissionLanguageIsLoading ||
-    userSubmissionOvertimeIsLoading ||
-    userSubmissionAttemptedIsLoading
+    userSubmissionIsFetching ||
+    userSubmissionVerdictIsFetching ||
+    userSubmissionLanguageIsFetching ||
+    userSubmissionOvertimeIsFetching ||
+    userSubmissionAttemptedIsFetching
   ) {
     return <Loading />
   }
