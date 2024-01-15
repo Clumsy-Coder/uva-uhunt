@@ -548,3 +548,25 @@ export type SubmissionSovledVsAttempted = {
    */
   fill: string;
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Search result data structure returned when searching in the navbar
+ */
+export type SearchResultType = {
+  /**
+   * Name of the search result
+   *
+   * - Could be a problem number
+   * - Could be a user
+   */
+  title: string;
+  /**
+   * href of the search result
+   *
+   * - If the result is a problem number, then navigate to `/problems/[problemNum]`
+   * - If the result is a user, then navigate to `/users/[username]`
+   */
+  href: string;
+}
