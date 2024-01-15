@@ -1,3 +1,20 @@
+## [1.0.0-development.6](https://github.com/Clumsy-Coder/uva-uhunt/compare/1.0.0-development.5...1.0.0-development.6) (2024-1-15)
+
+
+### :sparkles: Features
+
+* **api:user:submissions:verdict:** add endpoint `/api/users/[username]/submissions/verdict` ([33101e6](https://github.com/Clumsy-Coder/uva-uhunt/commit/33101e61c3c9e9b44bb9a0f76bc6b30f2fd670f2))
+* **api:user:submissions:** add endpoint `/api/users/[username]/submissions` ([023d886](https://github.com/Clumsy-Coder/uva-uhunt/commit/023d8865d3603325c11185d2ee7e4896f4a7c211))
+* **api:users:attempted:** add endpoint `/api/users/[username]/submissions/attempted` ([f3ea62c](https://github.com/Clumsy-Coder/uva-uhunt/commit/f3ea62c89d2804b5c8dcdcd2a602434d1bcccd35))
+* **api:users:submissions:** add endpoint `/api/users/[username]/submissions/language` ([d773671](https://github.com/Clumsy-Coder/uva-uhunt/commit/d773671ab833be365a0e368c4ad3ffc43b030084))
+* **api:users:submissions:** add endpoint `/api/users/[username]/submissions/overtime` ([01232a7](https://github.com/Clumsy-Coder/uva-uhunt/commit/01232a7ca78c1f9a648a3ada5b74b9664b2d1642))
+* **components:charts:** add `SolvedVsAttemptedDonutChart` component ([25bda0e](https://github.com/Clumsy-Coder/uva-uhunt/commit/25bda0ebbd5cb59b31f4c258d6dd31f5f6263fc4))
+* **page:user:** display problem solved VS user submissions with donut chart ([e2689d5](https://github.com/Clumsy-Coder/uva-uhunt/commit/e2689d5f8ab121f86a7f894ae2dd5717d074b769))
+* **page:user:** display user submissions by language with radar chart ([54639ab](https://github.com/Clumsy-Coder/uva-uhunt/commit/54639abedcb68f405f6cd314547b6cffe9586934))
+* **page:user:** display user submissions by verdict with bar chart ([2d8a058](https://github.com/Clumsy-Coder/uva-uhunt/commit/2d8a058e5e1af1dc0c3bdb97b0d0bed74408cd47))
+* **page:user:** display user submissions on `/users/[username]` page ([c937b78](https://github.com/Clumsy-Coder/uva-uhunt/commit/c937b7871af9c72c784dcf80197252eaf72ca318))
+* **page:user:** display user submissions overtime with area chart ([21ea5f1](https://github.com/Clumsy-Coder/uva-uhunt/commit/21ea5f150e7c62bb82844b550350454fc812c130))
+
 ## [1.0.0-development.5](https://github.com/Clumsy-Coder/uva-uhunt/compare/1.0.0-development.4...1.0.0-development.5) (2024-1-12)
 
 
