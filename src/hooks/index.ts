@@ -5,6 +5,7 @@ import {
   Problem,
   Submission,
   SubmissionLangType,
+  SubmissionSovledVsAttempted,
   SubmissionsOvertimeLineChartType,
   UserSubmission,
   UserSubmissionBarChartType,
@@ -56,6 +57,10 @@ export enum queryKey {
    * React-query key for fetching user submissions overtime
    */
   userSubmissionOvertime = "user-submissions-overtime",
+  /**
+   * React-query key for fetching user solved problems vs attempted submisssions
+   */
+  userSubmissionAttempted = "user-submissions-attempted",
 }
 
 /**
@@ -225,3 +230,21 @@ export const useFetchUserSubmissionOvertime = (username: string) => {
     refetchOnWindowFocus: false,
   });
 };
+
+/**
+ * Fetch user solved problems vs attempted submissions
+ * Used for displaying data using Rechart donut chart
+ */
+export const useFetchUserSubmissionAttempted = (username: string) => {
+  return useQuery({
+    queryKey: [queryKey.userSubmissionAttempted],
+    queryFn: async () =>
+      await axios
+        .get<SubmissionSovledVsAttempted[]>(
+          `/api/users/${username}/submissions/attempted`,
+        )
+        .then((res) => res.data),
+    refetchOnWindowFocus: false,
+  });
+};
+
