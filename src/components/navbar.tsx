@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/darkmode-toggle";
+import SearchBar from "./searchbar";
 
 const links = [
   { label: "Uva uHunt", href: "/" },
@@ -23,7 +24,7 @@ const Navbar = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
         )}
         {...props}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {links.map((link) => (
             <Link
               key={link.label}
@@ -31,12 +32,13 @@ const Navbar = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
               className={cn(
                 "nav-link",
                 pathname === link.href && "active-nav-link",
-                "first:text-lg first:font-bold first:mr-8",
+                "first:text-lg first:font-bold ",
               )}
             >
               {link.label}
             </Link>
           ))}
+          <SearchBar />
         </div>
         <ModeToggle />
       </nav>
