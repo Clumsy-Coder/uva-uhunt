@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import {
   Problem,
+  SearchResultType,
   Submission,
   SubmissionLangType,
   SubmissionSovledVsAttempted,
@@ -61,6 +62,8 @@ export enum queryKey {
    * React-query key for fetching user solved problems vs attempted submisssions
    */
   userSubmissionAttempted = "user-submissions-attempted",
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  search = "search",
 }
 
 /**
@@ -249,3 +252,22 @@ export const useFetchUserSubmissionAttempted = (username: string) => {
   });
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Fetch search results
+ */
+export const useFetchSearch = (searchStr: string) => {
+  return useQuery({
+    queryKey: [queryKey.search, searchStr],
+    queryFn: async (context) =>
+      await axios
+        .get<SearchResultType[]>(`/api/search/${context.queryKey[1]}`)
+        .then((res) => res.data),
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    enabled: !!searchStr,
+    retry: false,
+  });
+};
