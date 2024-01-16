@@ -1,3 +1,16 @@
+## [1.0.0-development.7](https://github.com/Clumsy-Coder/uva-uhunt/compare/1.0.0-development.6...1.0.0-development.7) (2024-1-16)
+
+
+### :sparkles: Features
+
+* **api:search:** add endpoint `/api/search/[searchStr]` ([bf15e83](https://github.com/Clumsy-Coder/uva-uhunt/commit/bf15e83c1e2b6ef378b728c2d62ed5f7f2ed6d31))
+* **components:search:** add `searchbar` component ([d8acdd9](https://github.com/Clumsy-Coder/uva-uhunt/commit/d8acdd9a980a5a978993dbbf58430f0aa59fb138))
+
+
+### :bug: Bug Fixes
+
+* **api:users:submissions:overtime:** submission with one year ([8b69ffa](https://github.com/Clumsy-Coder/uva-uhunt/commit/8b69ffa982d53fce71804ccd10d2aada9a8acfa4))
+
 ## [1.0.0-development.6](https://github.com/Clumsy-Coder/uva-uhunt/compare/1.0.0-development.5...1.0.0-development.6) (2024-1-15)
 
 
