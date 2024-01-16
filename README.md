@@ -40,6 +40,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 <details>
 <summary>Show screenshots</summary>
 
+### Navbar
+![Navbar 1](docs/images/navbar.png)
+
 ### Home page (live submissions)
 ![Home page 1](docs/images/page-home-loading.png)
 
